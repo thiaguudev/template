@@ -1,0 +1,7 @@
+{
+  "Auth": {
+    "title": "Hello World!",
+    "signIn": "Sign In",
+    "signOut": "Sign Out"
+  }
+}
