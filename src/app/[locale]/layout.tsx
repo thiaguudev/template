@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { useMessages, NextIntlClientProvider } from "next-intl";
+import { Analytics } from "@vercel/analytics/react";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
@@ -33,6 +34,7 @@ export default function RootLayout({
         </NextIntlClientProvider>
         <Chat />
         <HotJar />
+        <Analytics />
       </body>
     </html>
   );
