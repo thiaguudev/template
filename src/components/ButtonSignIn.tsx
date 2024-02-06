@@ -7,7 +7,15 @@ import { Button } from "@/components/ui/button";
 
 export default function ButtonSignIn() {
   const t = useTranslations("Auth");
-  const handleSign = () => signIn("google");
+
+  const handleSign = async () => {
+    const response = await signIn("google", {
+      redirect: false,
+      callbackUrl: "",
+    });
+
+    console.log(response);
+  };
 
   return <Button onClick={handleSign}>{t("signIn")}</Button>;
 }
