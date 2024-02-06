@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { cleanEnv, str } from "envalid";
 
 export const env = cleanEnv(process.env, {
@@ -6,4 +7,5 @@ export const env = cleanEnv(process.env, {
   GOOGLE_CLIENT_SECRET: str(),
   STRIPE_API_KEY: str(),
   SECRET_KEY: str(),
+  NEXT_PUBLIC_CHAT_ID: str(),
 });
