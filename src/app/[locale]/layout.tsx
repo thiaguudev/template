@@ -4,6 +4,7 @@ import { useMessages, NextIntlClientProvider } from "next-intl";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import "../globals.css";
+import UserNav from "@/components/UserNav";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -20,11 +21,12 @@ export default function RootLayout({
   params: { locale },
 }: RootLayoutProps) {
   const messages = useMessages();
+
   return (
     <html lang={locale}>
       <body className={fontSans.className}>
         <NextIntlClientProvider messages={messages}>
-          <h1>Root</h1>
+          <UserNav />
           {children}
         </NextIntlClientProvider>
       </body>

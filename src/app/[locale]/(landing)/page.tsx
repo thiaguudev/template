@@ -3,7 +3,6 @@
 import { useLocale, useTranslations } from "next-intl";
 
 import { localeNames, locales, usePathname, useRouter } from "@/navigation";
-import ButtonSignOut from "@/components/ButtonSignOut";
 
 export default function LandingPage() {
   const router = useRouter();
@@ -19,12 +18,6 @@ export default function LandingPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>{t("title")}</h1>
-      {/* <Avatar>
-        <AvatarImage src={authSession?.user?.image as string} alt="@shadcn" />
-        <AvatarFallback>
-          {authSession?.user?.name?.substring(0, 2).toUpperCase()}
-        </AvatarFallback>
-      </Avatar> */}
       <select value={locale} onChange={switchLocale}>
         {locales.map((loc) => (
           <option key={loc} value={loc}>
@@ -32,8 +25,6 @@ export default function LandingPage() {
           </option>
         ))}
       </select>
-
-      <ButtonSignOut />
     </main>
   );
 }

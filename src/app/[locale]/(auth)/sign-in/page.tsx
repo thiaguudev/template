@@ -1,9 +1,7 @@
 import { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
-import { getServerAuthSession } from "@/lib/auth";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import ButtonSignIn from "@/components/ButtonSignIn";
+import UserNav from "@/components/UserNav";
 
 export const metadata: Metadata = {
   title: {
@@ -12,19 +10,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function SignInPage() {
-  const authSession = await getServerAuthSession();
-
+export default function SignInPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>SignIn</h1>
-      {/* <Avatar>
-        <AvatarImage src={authSession?.user?.image as string} alt="@shadcn" />
-        <AvatarFallback>
-          {authSession?.user?.name?.substring(0, 2).toUpperCase()}
-        </AvatarFallback>
-      </Avatar> */}
-      <ButtonSignIn />
     </main>
   );
 }

@@ -10,10 +10,9 @@ type AuthLayoutProps = Readonly<{
   children: React.ReactNode;
 }>;
 
-export default function RootLayout({ children }: AuthLayoutProps) {
+export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div>
-      <h1>Auth</h1>
       {children}
     </div>
   );
