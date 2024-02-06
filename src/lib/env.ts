@@ -8,4 +8,5 @@ export const env = cleanEnv(process.env, {
   STRIPE_API_KEY: str(),
   SECRET_KEY: str(),
   NEXT_PUBLIC_CHAT_ID: str(),
+  NEXT_PUBLIC_HOTJAR_SITE_ID: str(),
 });

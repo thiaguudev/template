@@ -3,9 +3,10 @@ import { useMessages, NextIntlClientProvider } from "next-intl";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import "../globals.css";
 import UserNav from "@/components/UserNav";
 import Chat from "@/components/Chat";
+import HotJar from "@/components/HotJar";
+import "../globals.css";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -26,11 +27,12 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body className={fontSans.className}>
-        <Chat />
         <NextIntlClientProvider messages={messages}>
           <UserNav />
           {children}
         </NextIntlClientProvider>
+        <Chat />
+        <HotJar />
       </body>
     </html>
   );
