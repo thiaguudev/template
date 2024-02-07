@@ -2,6 +2,7 @@
   "Auth": {
     "title": "Olá Mundo!",
     "signIn": "Entrar",
+    "signInWithGoogle": "Entrar com Google",
     "signOut": "Sair"
   }
 }

@@ -4,10 +4,11 @@ import { Analytics } from "@vercel/analytics/react";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import UserNav from "@/components/UserNav";
 import Chat from "@/components/Chat";
 import HotJar from "@/components/HotJar";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "../globals.css";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -28,10 +29,16 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body className={fontSans.className}>
-        <NextIntlClientProvider messages={messages}>
-          <UserNav />
-          {children}
-        </NextIntlClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </ThemeProvider>
         <Chat />
         <HotJar />
         <Analytics />

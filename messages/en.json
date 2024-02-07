@@ -2,6 +2,7 @@
   "Auth": {
     "title": "Hello World!",
     "signIn": "Sign In",
+    "signInWithGoogle": "Sign in with Google",
     "signOut": "Sign Out"
   }
 }

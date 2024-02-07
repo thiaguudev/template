@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getServerAuthSession } from "@/lib/auth";
-import ButtonSignOut from "./ButtonSignOut";
-import ButtonSignIn from "./ButtonSignIn";
+import ButtonSignOut from "@/components/ButtonSignOut";
+import ButtonSignIn from "@/components/ButtonSignIn";
 
 export default async function UserNav() {
   const authSession = await getServerAuthSession();

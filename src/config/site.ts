@@ -1,5 +1,5 @@
 export const siteConfig = {
-  title: "",
+  title: "Survey Apoli",
   description: "",
   links: {
     instagram: "",

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
+import RecoveryPasswordForm from "@/components/auth/form/RecoveryPassword";
 
 export const metadata: Metadata = {
   title: {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function RecoveryPasswordPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>RecoveryPassword</h1>
+      <RecoveryPasswordForm />
     </div>
   );
 }
