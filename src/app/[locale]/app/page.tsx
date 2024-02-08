@@ -1,11 +1,11 @@
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import isAuth from "@/components/isAuth";
+import { Toaster } from "@/components/ui/toaster";
 
 function AppPage() {
   return (
     <div>
-      <ThemeSwitcher />
       AppPage
+      <Toaster />
     </div>
   );
 }

@@ -14,3 +14,20 @@ export const userAuthRecoveryPasswordSchema = z.object({
 export type UserAuthRecoveryPasswordSchema = z.infer<
   typeof userAuthRecoveryPasswordSchema
 >;
+
+export const customerStripe = z.object({
+  email: z.string().email(),
+  name: z.string(),
+  shipping: z.object({
+    line1: z.string(),
+  }),
+  address: z.object({
+    city: z.string(),
+    country: z.string(),
+    line1: z.string(),
+    postal_code: z.string(),
+    state: z.string(),
+  }),
+});
+
+export type CustomerStripe = z.infer<typeof customerStripe>;

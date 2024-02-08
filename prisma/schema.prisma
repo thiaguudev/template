@@ -37,14 +37,37 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model Subscription {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  plan      Plan?    @relation(fields: [planId], references: [id])
+  price     String?
+  active    Boolean  @default(false)
+
+  priceId              String
+  customerId           String
+  currentPeriodEndDate DateTime
+  subscritiptionId     String   @unique
+
+  // agencyId String? @unique
+  // Agency   Agency? @relation(fields: [agencyId], references: [id])
+  planId String?
+  User   User[]
+
+  @@index([customerId])
+}
+
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id             String        @id @default(cuid())
+  name           String?
+  email          String?       @unique
+  emailVerified  DateTime?
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  Subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
+  subscriptionId String?
 }
 
 model VerificationToken {
@@ -56,7 +79,8 @@ model VerificationToken {
 }
 
 model Plan {
-  id      String @id @default(cuid())
-  name    String
-  country String
+  id           String         @id @default(cuid())
+  name         String
+  country      String
+  Subscription Subscription[]
 }

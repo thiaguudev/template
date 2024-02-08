@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getServerAuthSession } from "@/lib/auth";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ButtonSignOut from "@/components/ButtonSignOut";
 import ButtonSignIn from "@/components/ButtonSignIn";
 
@@ -22,7 +22,7 @@ export default async function UserNav() {
           <ButtonSignOut />
         </div>
       ) : (
-        <ButtonSignIn />
+        <ButtonSignIn>Sign in</ButtonSignIn>
       )}
     </div>
   );

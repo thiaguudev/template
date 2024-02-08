@@ -1,14 +1,25 @@
 "use client";
 
+import { ReactNode } from "react";
 import { signIn } from "next-auth/react";
-import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
+import { useLocale } from "next-intl";
 
-export default function ButtonSignIn() {
-  const t = useTranslations("Auth");
+type ButtonSignInProps = {
+  children: ReactNode;
+};
 
-  const handleSign = async () => await signIn("google");
+export default function ButtonSignIn({ children }: ButtonSignInProps) {
+  const locale = useLocale();
 
-  return <Button onClick={handleSign}>{t("signInWithGoogle")}</Button>;
+  const handleSign = async () => {
+    await signIn("google", { callbackUrl: `/${locale}/app` });
+  };
+
+  return (
+    <Button onClick={handleSign} variant="destructive">
+      {children}
+    </Button>
+  );
 }

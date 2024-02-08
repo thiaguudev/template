@@ -25,6 +25,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
+import ButtonSignIn from "@/components/ButtonSignIn";
 
 export default function SignUpForm() {
   const form = useForm<UserAuthSchema>({
@@ -78,14 +79,14 @@ export default function SignUpForm() {
                 </FormItem>
               )}
             />
-
             <Button type="submit" className="w-full">
               {t("signUp")}
             </Button>
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="justify-center">
+      <CardFooter className="justify-center flex-col gap-3">
+        <ButtonSignIn>{t("signUpWithGoogle")}</ButtonSignIn>
         <Link href="/sign-in" className="text-center text-sm">
           {t("haveAccount")} <span>{t("signIn")}</span>
         </Link>
