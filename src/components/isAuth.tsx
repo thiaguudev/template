@@ -1,5 +1,5 @@
-import { getServerAuthSession } from "@/lib/auth";
 import { redirect } from "@/navigation";
+import { getServerAuthSession } from "@/lib/auth";
 
 export default function isAuth<P extends Record<string, unknown>>(
   Component: React.ComponentType<P>

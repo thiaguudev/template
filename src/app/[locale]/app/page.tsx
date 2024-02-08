@@ -10,4 +10,4 @@ function AppPage() {
   );
 }
 
-export default isAuth(AppPage);
+export default isAuth<any>(AppPage);
