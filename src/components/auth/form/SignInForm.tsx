@@ -31,7 +31,7 @@ export default function SignInForm() {
     resolver: zodResolver(userAuthSchema),
   });
 
-  const t = useTranslations();
+  const t = useTranslations("Auth");
 
   const handleOnSubmit: SubmitHandler<UserAuthSchema> = async (d) => {
     console.log("d", d);
@@ -40,8 +40,10 @@ export default function SignInForm() {
   return (
     <Card className="flex flex-col w-[350px]">
       <CardHeader>
-        <CardTitle>Sign in</CardTitle>
-        <CardDescription>Welcome back to {siteConfig.title}</CardDescription>
+        <CardTitle className="text-xl">{t("signIn")}</CardTitle>
+        <CardDescription>
+          {t("signInWelcome")} {siteConfig.title}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -78,14 +80,14 @@ export default function SignInForm() {
             />
 
             <Button type="submit" className="w-full">
-              Sign in
+              {t("signIn")}
             </Button>
           </form>
         </Form>
       </CardContent>
       <CardFooter className="justify-center">
         <Link href="/sign-up" className="text-center text-sm">
-          {"Don't"} have an account? <span>Sign up</span>
+          {t("dontHaveAccount")} <span>{t("signUp")}</span>
         </Link>
       </CardFooter>
     </Card>

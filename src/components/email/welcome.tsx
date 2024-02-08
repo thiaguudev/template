@@ -1,3 +1,6 @@
+import * as React from "react";
+
+import { env } from "@/lib/env";
 import {
   Body,
   Button,
@@ -10,8 +13,6 @@ import {
   Section,
   Text,
 } from "@react-email/components";
-import { env } from "process";
-import * as React from "react";
 
 interface WelcomeEmailProps {
   username: string;

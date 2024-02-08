@@ -2,7 +2,12 @@
   "Auth": {
     "title": "Hello World!",
     "signIn": "Sign In",
+    "signUp": "Create account",
     "signInWithGoogle": "Sign in with Google",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "signInWelcome": "Welcome back to",
+    "signUpWelcome": "No need card credit. Create your account in",
+    "haveAccount": "Have an account?",
+    "dontHaveAccount": "Don't have an account?"
   }
 }

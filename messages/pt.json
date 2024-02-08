@@ -2,7 +2,12 @@
   "Auth": {
     "title": "Olá Mundo!",
     "signIn": "Entrar",
+    "signUp": "Criar conta",
     "signInWithGoogle": "Entrar com Google",
-    "signOut": "Sair"
+    "signOut": "Sair",
+    "signInWelcome": "Bem-vindo(a) de volta à",
+    "signUpWelcome": "Não precisa de cartão de crédito. Crie sua conta na",
+    "haveAccount": "Tem uma conta?",
+    "dontHaveAccount": "Não tem uma conta?"
   }
 }

@@ -8,7 +8,6 @@ import Chat from "@/components/Chat";
 import HotJar from "@/components/HotJar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "../globals.css";
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
