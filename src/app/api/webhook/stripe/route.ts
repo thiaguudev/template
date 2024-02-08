@@ -18,6 +18,7 @@ export async function POST(req: Request) {
   const body = await req.text();
   const signature = headers().get("stripe-signature") as string;
   let event: Stripe.Event;
+  const teamId = "";
 
   try {
     event = stripe.webhooks.constructEvent(
@@ -35,10 +36,24 @@ export async function POST(req: Request) {
         case "customer.subscription.created":
         case "customer.subscription.updated":
           if (subscription.status === "active") {
-            await prisma.subscription.create({
+            const data = {
               data: {
                 priceId: subscription.plan.id,
+                active: true,
+                planId: subscription.plan.id,
+                subscritiptionId: subscription.id,
+                customerId: subscription.customer.toString(),
+                currentPeriodEndDate: new Date(
+                  subscription.current_period_end * 1000
+                ),
               },
+            };
+            await prisma.subscription.upsert({
+              where: {
+                customerId: teamId,
+              },
+              create: data,
+              update: data,
             });
           }
       }
