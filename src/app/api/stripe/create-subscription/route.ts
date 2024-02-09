@@ -39,7 +39,6 @@ export async function POST(req: NextRequest) {
         }
       );
 
-      console.log(subscription);
 
       return NextResponse.json({
         subscriptionId: subscription.id,
@@ -57,8 +56,6 @@ export async function POST(req: NextRequest) {
         payment_settings: { save_default_payment_method: "on_subscription" },
         expand: ["latest_invoice.payment_intent"],
       });
-
-      console.log(subscription);
 
       return NextResponse.json({
         subscriptionId: subscription.id,

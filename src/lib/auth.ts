@@ -1,14 +1,10 @@
-import {
-  NextAuthOptions,
-  getServerSession,
-  DefaultSession,
-  DefaultUser,
-} from "next-auth";
+import { NextAuthOptions, getServerSession, DefaultSession } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 import { prisma } from "@/lib/prisma";
-import { env } from "./env";
+import { sendEmail } from "@/lib/requests";
+import { env } from "@/lib/env";
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
@@ -25,9 +21,7 @@ declare module "next-auth/jwt" {
 }
 
 export const authOptions: NextAuthOptions = {
-  session: {
-    strategy: "jwt",
-  },
+  session: { strategy: "jwt" },
   secret: env.SECRET_KEY,
   adapter: PrismaAdapter(prisma),
   callbacks: {
@@ -40,16 +34,12 @@ export const authOptions: NextAuthOptions = {
     },
     async jwt({ token, trigger, user }) {
       if (trigger === "signUp") {
-        fetch(`${env.VERCEL_URL}/api/email`, {
-          method: "POST",
-          body: JSON.stringify({
-            username: user.name,
-            to: user.email,
-          }),
-        });
+        sendEmail({ username: user.name!, email: user.email! });
       }
 
-      if (user) token.id = user.id;
+      if (user) {
+        token.id = user.id;
+      }
 
       return token;
     },

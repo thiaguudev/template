@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { UserAuthSchema, userAuthSchema } from "@/validators/schema";
+import { UserAuth, userAuth } from "@/validators/schema";
 import {
   Form,
   FormControl,
@@ -28,14 +28,14 @@ import { siteConfig } from "@/config/site";
 import ButtonSignIn from "@/components/ButtonSignIn";
 
 export default function SignInForm() {
-  const form = useForm<UserAuthSchema>({
-    resolver: zodResolver(userAuthSchema),
+  const form = useForm<UserAuth>({
+    resolver: zodResolver(userAuth),
   });
 
   const t = useTranslations("Auth");
 
-  const handleOnSubmit: SubmitHandler<UserAuthSchema> = async (d) => {
-    console.log("d", d);
+  const handleOnSubmit: SubmitHandler<UserAuth> = async (d) => {
+    console.log("✔ d", d);
   };
 
   return (

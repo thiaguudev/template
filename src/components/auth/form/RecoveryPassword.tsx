@@ -5,8 +5,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
-  userAuthRecoveryPasswordSchema,
-  UserAuthRecoveryPasswordSchema,
+  userAuthRecoveryPassword,
+  UserAuthRecoveryPassword,
 } from "@/validators/schema";
 import {
   Form,
@@ -32,14 +32,12 @@ export default function RecoveryPasswordForm() {
   const router = useRouter();
   const t = useTranslations();
 
-  const form = useForm<UserAuthRecoveryPasswordSchema>({
-    resolver: zodResolver(userAuthRecoveryPasswordSchema),
+  const form = useForm<UserAuthRecoveryPassword>({
+    resolver: zodResolver(userAuthRecoveryPassword),
   });
 
-  const handleOnSubmit: SubmitHandler<UserAuthRecoveryPasswordSchema> = async (
-    d
-  ) => {
-    console.log("d", d);
+  const handleOnSubmit: SubmitHandler<UserAuthRecoveryPassword> = async (d) => {
+    console.log("✔", d);
   };
 
   const handleOnBack = () => router.push("/sign-in");

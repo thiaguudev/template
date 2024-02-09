@@ -1,19 +1,17 @@
 import { z } from "zod";
 
-export const userAuthSchema = z.object({
+export const userAuth = z.object({
   email: z.string().email(),
   password: z.string().min(8),
 });
 
-export type UserAuthSchema = z.infer<typeof userAuthSchema>;
+export type UserAuth = z.infer<typeof userAuth>;
 
-export const userAuthRecoveryPasswordSchema = z.object({
+export const userAuthRecoveryPassword = z.object({
   email: z.string().email(),
 });
 
-export type UserAuthRecoveryPasswordSchema = z.infer<
-  typeof userAuthRecoveryPasswordSchema
->;
+export type UserAuthRecoveryPassword = z.infer<typeof userAuthRecoveryPassword>;
 
 export const customerStripe = z.object({
   email: z.string().email(),
@@ -31,3 +29,10 @@ export const customerStripe = z.object({
 });
 
 export type CustomerStripe = z.infer<typeof customerStripe>;
+
+export const senderEmail = z.object({
+  username: z.string(),
+  email: z.string().email(),
+});
+
+export type SenderEmail = z.infer<typeof senderEmail>;

@@ -11,7 +11,7 @@ export default function PlansList() {
       const response = await fetch("/api/stripe", {
         method: "POST",
         body: JSON.stringify({
-          priceId: "price_1OeiErKFxdF5l7Kyp5Fwo80l",
+          planId: "1",
         }),
       });
       const { url } = await response.json();

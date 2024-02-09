@@ -8,17 +8,13 @@ import { env } from "@/lib/env";
 import { stripe } from "@/lib/stripe";
 
 const stripeWebhookEvents = new Set([
-  "checkout.session.completed",
   "customer.subscription.created",
-  "customer.subscription.updated",
-  "customer.subscription.deleted",
 ]);
 
 export async function POST(req: Request) {
   const body = await req.text();
   const signature = headers().get("stripe-signature") as string;
   let event: Stripe.Event;
-  const teamId = "";
 
   try {
     event = stripe.webhooks.constructEvent(
@@ -28,40 +24,55 @@ export async function POST(req: Request) {
     );
 
     if (stripeWebhookEvents.has(event.type)) {
-      const subscription = event.data.object as Stripe.Subscription;
-
-      console.log("subscription webhook", subscription);
+      const subscription = event.data.object as any;
 
       switch (event.type) {
-        case "customer.subscription.created":
-        case "customer.subscription.updated":
-          if (subscription.status === "active") {
-            const data = {
-              data: {
-                priceId: subscription.plan.id,
-                active: true,
-                planId: subscription.plan.id,
-                subscritiptionId: subscription.id,
-                customerId: subscription.customer.toString(),
-                currentPeriodEndDate: new Date(
-                  subscription.current_period_end * 1000
-                ),
-              },
-            };
-            await prisma.subscription.upsert({
+        case "customer.subscription.created": {
+          console.log('subscription', subscription)
+
+          const plan = await prisma.plan.findUnique(
+            {
               where: {
-                customerId: teamId,
-              },
-              create: data,
-              update: data,
-            });
-          }
+                priceId: subscription.plan.id as string
+              }
+            }
+          )
+
+          // if (!plan) return new NextResponse('❌ BAD REQUEST', {
+          //   status: StatusCodes.BAD_REQUEST
+          // })
+
+          // const subscriptionUpsertData = {
+          //   subscritiptionId: subscription.id,
+          //   planId: plan?.id,
+          //   customerId: subscription.customer as string,
+          //   currentPeriodEndDate: new Date(subscription.current_period_end * 1000),
+          //   active: true
+          // }
+
+          // const sub = await prisma.subscription.upsert({
+          //   where: {
+          //     customerId: subscription.customer
+          //   },
+          //   create: subscriptionUpsertData,
+          //   update: subscriptionUpsertData
+          // })
+
+
+          // await prisma.user.update({
+          //   where: { id: subscription.metadata.userId },
+          //   data: {
+          //     customerId: subscription.customer,
+          //     subscriptionId: sub.id
+          //   }
+          // })
+        }
       }
     }
 
     return NextResponse.json({});
   } catch (error: any) {
-    console.log("error", error.message);
+    console.log("❌ " + error.message);
     return NextResponse.json(
       { message: "Webhook error: " + error.message },
       { status: StatusCodes.BAD_REQUEST }
