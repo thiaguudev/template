@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { StatusCodes } from "http-status-codes";
 
-import { prisma } from "@/lib/prisma";
-import { stripe } from "@/lib/stripe";
+import { createCheckout, hasPlan, hasSubscription, stripe } from "@/lib/stripe";
 import { getServerAuthSession } from "@/lib/auth";
+import { env } from "@/lib/env";
 
 /*
   Freemium  
-  Starter:    price_1OeiErKFxdF5l7Kyp5Fwo80l
-  Plus:        price_1OeiFgKFxdF5l7Ky49c1c1gM
-  Business:   price_1OeiG0KFxdF5l7KyG8iihEcK
+  Starter:     price_1OeiErKFxdF5l7Kyp5Fwo80l
+  Plus:         price_1OeiFgKFxdF5l7Ky49c1c1gM
+  Business:    price_1OeiG0KFxdF5l7KyG8iihEcK
 */
 
 export async function POST(req: NextRequest) {
@@ -17,82 +17,31 @@ export async function POST(req: NextRequest) {
   const authSession = await getServerAuthSession();
   const { planId } = await req.json();
 
-  if (!authSession) {
-    return new NextResponse("UNAUTHORIZED", {
-      status: StatusCodes.UNAUTHORIZED,
-    });
-  }
+  if (!authSession)
+    return new NextResponse("UNAUTHORIZED", { status: StatusCodes.UNAUTHORIZED });
 
   try {
-    const planExists = await prisma.plan.findUnique({
-      where: {
-        id: planId
-      }
-    })
+    const plan = await hasPlan(planId)
 
-    if (!planExists) {
+    if (!plan) {
       return new NextResponse("BAD REQUEST", { status: StatusCodes.BAD_REQUEST })
     }
 
-    const subscriptionExists = await prisma.user.findFirst({
-      where: {
-        id: authSession.user.id
-      },
-      include: { subscription: true },
-    });
+    const customerId = await hasSubscription()
 
-    if (subscriptionExists?.subscription?.customerId) {
+    if (customerId) {
       const subscription = await stripe.billingPortal.sessions.create({
-        customer: subscriptionExists.subscription.customerId,
-        return_url: `/${locale}/app/settings?success=true`,
+        customer: customerId,
+        return_url: env.STRIPE_SUCCESS_URL,
+
       });
 
       return NextResponse.json({ url: subscription.url });
     } else {
-      const subscription = await stripe.checkout.sessions.create({
-        metadata: {
-          userId: authSession.user.id
-        },
-        success_url: "http://localhost:3000/en/app?success=true",
-        mode: "subscription",
-        line_items: [
-          {
-            price: planExists.priceId,
-            quantity: 1
-          }
-        ]
-      })
-
-      console.log('subscription send', subscription)
-
-      return NextResponse.json({ url: subscription.url })
+      const checkout = await createCheckout(planId)
+      return NextResponse.json({ url: checkout.url })
     }
-
-
-
-
-
-    // if (subscriptionExists?.subscription?.subscritiptionId) {
-    //   const subscription = await stripe.billingPortal.sessions.create({
-    //     customer: customerId,
-    //     return_url: `/${locale}/app/settings?success=true`,
-    //   });
-
-    //   return NextResponse.json({ url: subscription.url });
-    // } else {
-    // const subscription = await stripe.checkout.sessions.create({
-    //   success_url: "http://localhost:3000/en/app?success=true",
-    //   mode: "subscription",
-    //   line_items: [
-    //     {
-    //       price: priceId,
-    //       quantity: 1,
-    //     },
-    //   ],
-    // });
-    // return NextResponse.json({ url: subscription.url });
-    // }
   } catch (error: any) {
-    return new NextResponse(error.message);
+    return new NextResponse(error.message, { status: StatusCodes.BAD_REQUEST });
   }
 }

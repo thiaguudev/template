@@ -3,7 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 import { prisma } from "@/lib/prisma";
-import { sendEmail } from "@/lib/requests";
+// import { sendEmail } from "@/lib/requests";
 import { env } from "@/lib/env";
 
 declare module "next-auth" {
@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
     },
     async jwt({ token, trigger, user }) {
       if (trigger === "signUp") {
-        sendEmail({ username: user.name!, email: user.email! });
+        // sendEmail({ username: user.name!, email: user.email! });
       }
 
       if (user) {

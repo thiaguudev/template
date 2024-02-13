@@ -8,7 +8,9 @@ import { env } from "@/lib/env";
 import { stripe } from "@/lib/stripe";
 
 const stripeWebhookEvents = new Set([
-  "customer.subscription.created",
+  'customer.subscription.created',
+  'customer.subscription.updated',
+  'customer.subscription.deleted'
 ]);
 
 export async function POST(req: Request) {
@@ -24,57 +26,63 @@ export async function POST(req: Request) {
     );
 
     if (stripeWebhookEvents.has(event.type)) {
-      const subscription = event.data.object as any;
+      const session = event.data.object as any;
+
+      const user = await prisma.user.findUnique({
+        where: { customerId: session.customer },
+        include: { Subscription: true }
+      })
+
+      if (!user) throw new Error('User not exists');
 
       switch (event.type) {
-        case "customer.subscription.created": {
-          console.log('subscription', subscription)
+        case "customer.subscription.deleted": {
+          await prisma.subscription.update({
+            where: { subscritiptionId: user?.Subscription?.subscritiptionId },
+            data: { active: false }
+          })
+        }
 
-          const plan = await prisma.plan.findUnique(
-            {
-              where: {
-                priceId: subscription.plan.id as string
-              }
+        case "customer.subscription.created":
+        case "customer.subscription.updated": {
+          if (session.status === 'active') {
+
+            const plan = await prisma.plan.findUnique({
+              where: { priceId: session.plan.id }
+            })
+
+            if (!plan) throw new Error('Plan not exists')
+
+            if (user.Subscription) {
+              await prisma.subscription.update({
+                where: { subscritiptionId: user?.Subscription?.subscritiptionId },
+                data: {
+                  currentPeriodEndDate: new Date(session.current_period_end * 1000),
+                  active: true,
+                  planId: plan.id
+                }
+              })
+            } else {
+              await prisma.subscription.create({
+                data: {
+                  subscritiptionId: session.id,
+                  active: true,
+                  planId: plan.id,
+                  userId: user.id as string,
+                  currentPeriodEndDate: new Date(session.current_period_end * 1000)
+                }
+              })
             }
-          )
 
-          // if (!plan) return new NextResponse('❌ BAD REQUEST', {
-          //   status: StatusCodes.BAD_REQUEST
-          // })
-
-          // const subscriptionUpsertData = {
-          //   subscritiptionId: subscription.id,
-          //   planId: plan?.id,
-          //   customerId: subscription.customer as string,
-          //   currentPeriodEndDate: new Date(subscription.current_period_end * 1000),
-          //   active: true
-          // }
-
-          // const sub = await prisma.subscription.upsert({
-          //   where: {
-          //     customerId: subscription.customer
-          //   },
-          //   create: subscriptionUpsertData,
-          //   update: subscriptionUpsertData
-          // })
-
-
-          // await prisma.user.update({
-          //   where: { id: subscription.metadata.userId },
-          //   data: {
-          //     customerId: subscription.customer,
-          //     subscriptionId: sub.id
-          //   }
-          // })
+          }
         }
       }
     }
 
-    return NextResponse.json({});
+    return NextResponse.json({ webhookActionReceived: true });
   } catch (error: any) {
-    console.log("❌ " + error.message);
     return NextResponse.json(
-      { message: "Webhook error: " + error.message },
+      { message: "❌ WEBHOOK ERROR: " + error.message },
       { status: StatusCodes.BAD_REQUEST }
     );
   }

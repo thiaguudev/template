@@ -43,9 +43,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  customerId     String?       @unique
-  subscriptionId String?       @unique
-  subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
+  customerId   String?       @unique
+  Subscription Subscription?
 }
 
 model VerificationToken {
@@ -71,12 +70,13 @@ model Subscription {
   updatedAt            DateTime @updatedAt
   planId               String?
   plan                 Plan?    @relation(fields: [planId], references: [id])
-  customerId           String   @unique
   currentPeriodEndDate DateTime
   active               Boolean  @default(false)
-  User                 User[]
 
-  @@index([customerId])
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
 
 model Survey {

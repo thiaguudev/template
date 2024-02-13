@@ -35,7 +35,7 @@ export default function SignUpForm() {
   const t = useTranslations("Auth");
 
   const handleOnSubmit: SubmitHandler<UserAuth> = async (d) => {
-    console.log("✔ d", d);
+    console.log("✔", d);
   };
 
   return (
