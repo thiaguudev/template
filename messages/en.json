@@ -1,5 +1,6 @@
 {
   "App": {
+    "selectALanguage": "Select a language",
     "cancel": "Cancel",
     "theme": {
       "dark": "Dark",
