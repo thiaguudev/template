@@ -27,10 +27,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useRouter } from "@/navigation";
+import ButtonCancel from "@/components/ButtonCancel";
 
 export default function RecoveryPasswordForm() {
   const router = useRouter();
-  const t = useTranslations();
+  const t = useTranslations("Auth");
 
   const form = useForm<UserAuthRecoveryPassword>({
     resolver: zodResolver(userAuthRecoveryPassword),
@@ -40,16 +41,11 @@ export default function RecoveryPasswordForm() {
     console.log("✔", d);
   };
 
-  const handleOnBack = () => router.push("/sign-in");
-
   return (
     <Card className="flex flex-col w-[350px]">
       <CardHeader>
-        <CardTitle>Reset password</CardTitle>
-        <CardDescription>
-          Enter the email address associated with your account, and {"we'll"}{" "}
-          email you a link to reset your password.
-        </CardDescription>
+        <CardTitle>{t("recoveryPassword")}</CardTitle>
+        <CardDescription>{t("recoveryPasswordDescription")}</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -74,11 +70,9 @@ export default function RecoveryPasswordForm() {
         </Form>
       </CardContent>
       <CardFooter className="justify-between gap-3">
-        <Button variant="outline" className="flex-1" onClick={handleOnBack}>
-          Cancel
-        </Button>
+        <ButtonCancel />
         <Button className="flex-1" type="submit">
-          Send Email
+          {t("recoveryPasswordSendEmail")}
         </Button>
       </CardFooter>
     </Card>

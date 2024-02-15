@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Account {
-  id                String  @id @default(cuid())
+  id                String  @id @default(uuid())
   userId            String
   type              String
   provider          String
@@ -56,11 +56,11 @@ model VerificationToken {
 }
 
 model Plan {
-  id            String         @id @default(cuid())
-  name          String
+  id            String         @id @default(uuid())
+  name          String         @unique
   country       String
-  subscriptions Subscription[]
   priceId       String         @unique
+  subscriptions Subscription[]
 }
 
 model Subscription {

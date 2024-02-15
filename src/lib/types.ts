@@ -1,4 +1,4 @@
-export type Locale = "pt" | "en";
+export type Locale = "pt" | "en" | "es";
 
 export type Address = {
   city: string;

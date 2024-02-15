@@ -1,4 +1,12 @@
 {
+  "App": {
+    "cancel": "Cancel",
+    "theme": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System"
+    }
+  },
   "Auth": {
     "title": "Hello World!",
     "signIn": "Sign In",
@@ -9,6 +17,9 @@
     "signInWelcome": "Welcome back to",
     "signUpWelcome": "No need card credit. Create your account in",
     "haveAccount": "Have an account?",
-    "dontHaveAccount": "Don't have an account?"
+    "dontHaveAccount": "Don't have an account?",
+    "recoveryPassword": "Reset password",
+    "recoveryPasswordDescription": "Enter the email address associated with your account, and we'll email you a link to reset your password.",
+    "recoveryPasswordSendEmail": "Send Email"
   }
 }

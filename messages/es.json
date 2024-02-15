@@ -1,0 +1,25 @@
+{
+  "App": {
+    "cancel": "Cancelar",
+    "theme": {
+      "dark": "Oscuro",
+      "light": "Claro",
+      "system": "Sistema"
+    }
+  },
+  "Auth": {
+    "title": "¡Hola mundo!",
+    "signIn": "Entrar",
+    "signUp": "Crea una cuenta",
+    "signInWithGoogle": "Inicia sesión con Google",
+    "signUpWithGoogle": "Regístrate en Google",
+    "signOut": "Salir",
+    "signInWelcome": "Bienvenido de nuevo a",
+    "signUpWelcome": "No se requiere tarjeta de crédito. Crea tu cuenta en",
+    "haveAccount": "¿Tener una cuenta?",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "recoveryPassword": "Restablecer la contraseña",
+    "recoveryPasswordDescription": "Ingrese la dirección de correo electrónico asociada con su cuenta y le enviaremos un enlace para restablecer su contraseña.",
+    "recoveryPasswordSendEmail": "Enviar correo electrónico"
+  }
+}

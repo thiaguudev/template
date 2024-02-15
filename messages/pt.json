@@ -1,4 +1,12 @@
 {
+  "App": {
+    "cancel": "Cancelar",
+    "theme": {
+      "dark": "Escuro",
+      "light": "Claro",
+      "system": "Sistema"
+    }
+  },
   "Auth": {
     "title": "Olá Mundo!",
     "signIn": "Entrar",
@@ -9,6 +17,9 @@
     "signInWelcome": "Bem-vindo(a) de volta à",
     "signUpWelcome": "Não precisa de cartão de crédito. Crie sua conta na",
     "haveAccount": "Tem uma conta?",
-    "dontHaveAccount": "Não tem uma conta?"
+    "dontHaveAccount": "Não tem uma conta?",
+    "recoveryPassword": "Redefinir senha",
+    "recoveryPasswordDescription": "Digite o endereço de e-mail associado à sua conta e enviaremos um e-mail com um link para redefinir sua senha.",
+    "recoveryPasswordSendEmail": "Enviar email"
   }
 }

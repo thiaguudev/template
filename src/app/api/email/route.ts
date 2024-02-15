@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
       html: "",
       react: WelcomeEmail({ username }),
     });
-    return NextResponse.json({}, { status: StatusCodes.CREATED });
+    return NextResponse.json(null, { status: StatusCodes.CREATED });
   } catch (error) {
     return NextResponse.json(
       { message: "Error sending welcome email" },
