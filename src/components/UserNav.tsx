@@ -1,7 +1,7 @@
 import { getServerAuthSession } from "@/lib/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ButtonSignOut from "@/components/ButtonSignOut";
-import ButtonSignIn from "@/components/ButtonSignIn";
+import ButtonSignInGoogle from "./ButtonSignInGoogle";
 
 export default async function UserNav() {
   const authSession = await getServerAuthSession();
@@ -22,7 +22,7 @@ export default async function UserNav() {
           <ButtonSignOut />
         </div>
       ) : (
-        <ButtonSignIn>Sign in</ButtonSignIn>
+        <ButtonSignInGoogle />
       )}
     </div>
   );

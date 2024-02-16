@@ -1,17 +1,13 @@
 "use client";
 
-import { ReactNode } from "react";
 import { signIn } from "next-auth/react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 
-type ButtonSignInProps = {
-  children: ReactNode;
-};
-
-export default function ButtonSignIn({ children }: ButtonSignInProps) {
+export default function ButtonSignInGoogle() {
   const locale = useLocale();
+  const t = useTranslations("Auth");
 
   const handleSign = async () => {
     await signIn("google", { callbackUrl: `/${locale}/app` });
@@ -21,6 +17,7 @@ export default function ButtonSignIn({ children }: ButtonSignInProps) {
     <Button
       onClick={handleSign}
       variant="outline"
+      size="lg"
       className="flex items-center gap-2"
     >
       <svg
@@ -46,7 +43,7 @@ export default function ButtonSignIn({ children }: ButtonSignInProps) {
           d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
         />
       </svg>
-      {children}
+      {t("signInWithGoogle")}
     </Button>
   );
 }

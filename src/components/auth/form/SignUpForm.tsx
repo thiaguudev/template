@@ -1,11 +1,13 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-
-import ButtonSignIn from "@/components/ButtonSignIn";
+import ButtonSignInGoogle from "@/components/ButtonSignInGoogle";
+import ButtonSignInFacebook from "@/components/ButtonSignInFacebook";
 
 export default function SignUpForm() {
-  const t = useTranslations("Auth");
-
-  return <ButtonSignIn>{t("signInWithGoogle")}</ButtonSignIn>;
+  return (
+    <div className="flex justify-center flex-col gap-3 items-stretch">
+      <ButtonSignInGoogle />
+      <ButtonSignInFacebook />
+    </div>
+  );
 }

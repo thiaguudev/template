@@ -5,6 +5,8 @@ export const env = cleanEnv(process.env, {
   DATABASE_URL: str(),
   GOOGLE_CLIENT_ID: str(),
   GOOGLE_CLIENT_SECRET: str(),
+  FACEBOOK_CLIENT_ID: str(),
+  FACEBOOK_CLIENT_SECRET: str(),
   SECRET_KEY: str(),
   RESEND_API_KEY: str(),
   FROM_EMAIL: str(),

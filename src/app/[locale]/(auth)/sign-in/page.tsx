@@ -18,7 +18,11 @@ export default function SignInPage() {
           <SignInForm />
         </div>
         <div className="w-1/2 h-[380px] flex items-center justify-center">
-          <img src="/1.png" alt="Hero login" className="block rounded-2xl" />
+          <img
+            src="/1.png"
+            alt="Hero login"
+            className="hidden sm:block rounded-2xl"
+          />
         </div>
       </div>
     </div>

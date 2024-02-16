@@ -2,14 +2,16 @@
 
 import { useTranslations } from "next-intl";
 
-import ButtonSignIn from "@/components/ButtonSignIn";
+import ButtonSignInGoogle from "@/components/ButtonSignInGoogle";
+import ButtonSignInFacebook from "@/components/ButtonSignInFacebook";
 
 export default function SignInForm() {
   const t = useTranslations("Auth");
 
   return (
-    <div className="flex justify-center items-center">
-      <ButtonSignIn>{t("signInWithGoogle")}</ButtonSignIn>
+    <div className="flex justify-center flex-col gap-3 items-stretch">
+      <ButtonSignInGoogle />
+      <ButtonSignInFacebook />
     </div>
   );
 }
