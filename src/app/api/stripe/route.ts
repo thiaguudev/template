@@ -6,7 +6,6 @@ import { getServerAuthSession } from "@/lib/auth";
 import { env } from "@/lib/env";
 
 export async function POST(req: NextRequest) {
-  const locale = "en";
   const authSession = await getServerAuthSession();
   const { planId } = await req.json();
 

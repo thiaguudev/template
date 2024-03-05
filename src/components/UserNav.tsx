@@ -1,29 +1,19 @@
 import { getServerAuthSession } from "@/lib/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import ButtonSignOut from "@/components/ButtonSignOut";
-import ButtonSignInGoogle from "./ButtonSignInGoogle";
 
 export default async function UserNav() {
   const authSession = await getServerAuthSession();
 
   return (
     <div>
-      {authSession?.user ? (
-        <div>
-          <Avatar>
-            <AvatarImage
-              src={authSession?.user?.image as string}
-              alt="@shadcn"
-            />
-            <AvatarFallback>
-              {authSession?.user?.name?.substring(0, 2).toUpperCase()}
-            </AvatarFallback>
-          </Avatar>
-          <ButtonSignOut />
-        </div>
-      ) : (
-        <ButtonSignInGoogle />
-      )}
+      <div>
+        <Avatar>
+          <AvatarImage src={authSession?.user?.image as string} alt="@shadcn" />
+          <AvatarFallback>
+            {authSession?.user?.name?.substring(0, 2).toUpperCase()}
+          </AvatarFallback>
+        </Avatar>
+      </div>
     </div>
   );
 }

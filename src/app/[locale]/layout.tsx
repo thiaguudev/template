@@ -7,7 +7,10 @@ import { fontSans } from "@/config/fonts";
 import Chat from "@/components/Chat";
 import HotJar from "@/components/HotJar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+
 import "../globals.css";
+import { Locale } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -16,7 +19,7 @@ export const metadata: Metadata = {
 
 type RootLayoutProps = Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: Locale };
 }>;
 
 export default function RootLayout({
@@ -24,10 +27,9 @@ export default function RootLayout({
   params: { locale },
 }: RootLayoutProps) {
   const messages = useMessages();
-
   return (
     <html lang={locale}>
-      <body className={fontSans.className}>
+      <body className={cn("min-h-screen font-sans", fontSans.className)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

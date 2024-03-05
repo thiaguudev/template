@@ -9,12 +9,5 @@ type AppLayoutProps = {
 };
 
 export default async function AppLayout({ children }: AppLayoutProps) {
-  return (
-    <div>
-      <ThemeSwitcher />
-      <UserNav />
-      <PlansList />
-      {children}
-    </div>
-  );
+  return <main />;
 }

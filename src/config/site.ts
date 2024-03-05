@@ -4,6 +4,7 @@ export const siteConfig = {
   links: {
     instagram: "",
     facebook: "",
+    github: ""
   },
 };
 
