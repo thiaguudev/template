@@ -8,9 +8,10 @@ import Chat from "@/components/Chat";
 import HotJar from "@/components/HotJar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
-import "../globals.css";
 import { Locale } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import "../css/style.css";
+import "../globals.css";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -29,17 +30,24 @@ export default function RootLayout({
   const messages = useMessages();
   return (
     <html lang={locale}>
-      <body className={cn("min-h-screen font-sans", fontSans.className)}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NextIntlClientProvider messages={messages}>
-            {children}
-          </NextIntlClientProvider>
-        </ThemeProvider>
+      <body
+        className={cn(
+          "antialiased bg-gray-900 text-gray-200 tracking-tight",
+          fontSans.className
+        )}
+      >
+        <div className="flex flex-col min-h-screen overflow-hidden">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NextIntlClientProvider messages={messages}>
+              {children}
+            </NextIntlClientProvider>
+          </ThemeProvider>
+        </div>
         <Chat />
         <HotJar />
         <Analytics />
