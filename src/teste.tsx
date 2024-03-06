@@ -7,7 +7,6 @@ import { cn, nFormatter } from "@/lib/utils";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import UserNav from "@/components/UserNav";
 import ButtonSignInFacebook from "@/components/ButtonSignInFacebook";
-import { HeroForm } from "@/components/Hero";
 
 export default async function LandingPage() {
   return (
