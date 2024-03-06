@@ -14,7 +14,7 @@ export default async function PricingPage() {
 
   if (session?.user) {
     // subscriptionPlan = await getUserSubscriptionPlan(user.id);
-    subscriptionPlan = {};
+    // subscriptionPlan = {};
   }
 
   return (
