@@ -37,7 +37,6 @@ export default function MobileMenu() {
 
   return (
     <div className="md:hidden">
-      {/* Hamburger button */}
       <button
         ref={trigger}
         className={`hamburger ${mobileNavOpen && "active"}`}
@@ -57,7 +56,6 @@ export default function MobileMenu() {
         </svg>
       </button>
 
-      {/*Mobile navigation */}
       <nav
         id="mobile-nav"
         ref={mobileNav}
@@ -68,7 +66,7 @@ export default function MobileMenu() {
             : { maxHeight: 0, opacity: 0.8 }
         }
       >
-        <ul className="bg-gray-800 px-4 py-2">
+        <ul className="bg-gray-800 px-4 py-2 flex justify-between items-center">
           <li>
             <Link
               href="/signin"

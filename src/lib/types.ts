@@ -19,3 +19,15 @@ export type StripeCustomerType = {
   shipping: ShippingInfo;
   address: Address;
 };
+
+export type SubscriptionPlan = {}
+
+export type UserSubscriptionPlan = {}
+
+export type MarketingConfig = {
+  mainNav: {
+    title: string;
+    href: string;
+    disabled?: boolean
+  }[]
+}
