@@ -20,11 +20,14 @@ export function BillingFormButton({
   let [isPending, startTransition] = useTransition();
   const generateUserStripeSession = generateUserStripe.bind(
     null,
-    offer.stripeIds["yearly"]
+    ""
+    // offer.stripeIds["yearly"]
   );
 
-  const stripeSessionAction = () =>
-    startTransition(async () => await generateUserStripeSession());
+  const stripeSessionAction = () => {};
+
+  // const stripeSessionAction = () =>
+  //   startTransition(async () => await generateUserStripeSession());
 
   return (
     <Button

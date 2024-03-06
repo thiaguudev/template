@@ -64,12 +64,12 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
               <div className="flex flex-row">
                 <div className="flex items-end">
                   <div className="flex text-left text-3xl font-semibold leading-6">
-                    {isYearly && offer.prices.monthly > 0 ? (
+                    {isYearly && offer?.prices?.monthly > 0 ? (
                       <>
                         <span className="mr-2 text-muted-foreground line-through">
                           ${offer.prices.monthly}
                         </span>
-                        <span>${offer.prices.yearly / 12}</span>
+                        <span>${offer?.prices?.yearly / 12}</span>
                       </>
                     ) : (
                       `$${offer.prices.monthly}`
@@ -80,7 +80,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
                   </div>
                 </div>
               </div>
-              {offer.prices.monthly > 0 ? (
+              {offer?.prices?.monthly > 0 ? (
                 <div className="text-left text-sm text-muted-foreground">
                   {isYearly
                     ? `$${offer.prices.yearly} will be charged when annual`

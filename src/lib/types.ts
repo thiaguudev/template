@@ -20,9 +20,25 @@ export type StripeCustomerType = {
   address: Address;
 };
 
-export type SubscriptionPlan = {}
+export type SubscriptionPlan = {
+  title: string;
+  description: string;
+  benefits: string[];
+  limitations: string[];
+  prices: {
+    monthly: number | null,
+    yearly: number | null
+  }
+  stripeIds: {
+    monthly?: string | null,
+    yearly?: string | null
+  }
+}
 
-export type UserSubscriptionPlan = {}
+export type UserSubscriptionPlan = {
+  stripePriceId: string
+  interval: string;
+}
 
 export type MarketingConfig = {
   mainNav: {
