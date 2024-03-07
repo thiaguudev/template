@@ -1,6 +1,5 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Image from "next/image";
 import {
   ArrowRight2,
@@ -13,16 +12,17 @@ import {
   Setting2,
   Setting4,
   Star,
+  Star1,
   Timer1,
-  Triangle,
 } from "iconsax-react";
 
 import { useCentralStore } from "@/app/store";
-import { Link } from "@/navigation";
+import { Link, usePathname } from "@/navigation";
 import ProfileImage from "../../../public/images/testimonial-01.jpg";
 
 function Sidebar() {
   const pathname = usePathname();
+  console.log(pathname);
   const { setIsSidebarOpen, isSidebarOpen } = useCentralStore();
 
   // useEffect(() => {
@@ -34,15 +34,15 @@ function Sidebar() {
       <div className="w-full h-full border-r">
         {/* logo */}
         <div className="p-4 md:p-6 flex cursor-pointer group items-center gap-2">
-          <div className="h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-400 text-white">
-            <Triangle
+          <div className="h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-600 text-white">
+            <Star1
               size={24}
               className="relative group-hover:scale-75 duration-200"
             />
           </div>
           <div>
-            <h1 className="text-sm font-bold text-white">Githr</h1>
-            <p className="text-xs text-gray-500 font-medium">HR Management</p>
+            <h1 className="text-sm font-bold text-white">Worked task</h1>
+            <p className="text-xs text-gray-500 font-medium">Survey Apoli</p>
           </div>
         </div>
 
@@ -54,9 +54,9 @@ function Sidebar() {
           {/* top */}
           <div className="pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-xs">
             <Link
-              href={"/"}
+              href="/app"
               className={`flex ${
-                pathname === "/" ? "text-primary" : ""
+                pathname === "/app" ? "text-primary" : ""
               } hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2`}
             >
               <Element3 variant="Outline" size={16} />
@@ -91,9 +91,9 @@ function Sidebar() {
             </button>
 
             <Link
-              href={"/app/teams"}
+              href="/app/team"
               className={`flex ${
-                pathname === "/app/teams" ? "text-primary" : ""
+                pathname === "/app/team" ? "text-primary" : ""
               } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
             >
               <Profile2User size={16} />
@@ -131,14 +131,15 @@ function Sidebar() {
 
           <div>
             <div className="text-gray-500 text-xs font-medium md:px-2">
-              <button
+              <Link
+                href="/app/settings/general"
                 className={`flex ${
-                  pathname === "/app/settings" ? "text-primary" : ""
+                  pathname === "/app/settings/general" ? "text-primary" : ""
                 } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
               >
                 <Setting2 size={16} />
                 Settings
-              </button>
+              </Link>
 
               <button
                 className={`flex ${
@@ -163,9 +164,11 @@ function Sidebar() {
                   className="rounded-full"
                 />
                 <div className="">
-                  <p className="text-sm font-semibold text-white">Steve Jobs</p>
+                  <p className="text-sm font-semibold text-white">
+                    Vitória Carolina
+                  </p>
                   <p className="text-xs font-medium text-gray-500">
-                    steve@apple.com
+                    vitoria@carolina.com
                   </p>
                 </div>
               </div>

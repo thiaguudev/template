@@ -30,7 +30,7 @@ function Navbar({
             className="rounded-full"
           />
           <div className="">
-            <p className="text-sm font-semibold text-white">Steve Jobs</p>
+            <p className="text-sm font-semibold text-white">Vitória Carolina</p>
             <p className="text-xs font-medium text-gray-500">Welcome back</p>
           </div>
         </div>

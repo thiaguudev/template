@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Suspense, useState } from "react";
 
 import { Icons } from "@/components/shared/icons";
@@ -10,6 +9,7 @@ import { pricingData } from "@/config/subscriptions";
 import { useSigninModal } from "@/hooks/use-signin-modal";
 import { UserSubscriptionPlan } from "@/lib/types";
 import { BillingFormButton } from "./form/billing-form-button";
+import { Link } from "@/navigation";
 
 interface PricingCardsProps {
   userId?: string;
@@ -35,7 +35,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
           Pricing
         </p>
         <h2 className="font-heading text-3xl leading-[1.1] md:text-5xl">
-          Start at full speed !
+          Start at full speed!
         </h2>
       </div>
 
