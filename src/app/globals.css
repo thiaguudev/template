@@ -56,3 +56,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.all-center {
+  @apply flex items-center justify-center;
+}
+
+.primary-gradient {
+  @apply bg-gradient-to-br from-violet-500 to-violet-400;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import {
   ArrowRight2,
@@ -16,10 +16,10 @@ import {
   Timer1,
   Triangle,
 } from "iconsax-react";
-import ProfileImage from "../../../public/images/testimonial-01.jpg";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+
 import { useCentralStore } from "@/app/store";
+import { Link } from "@/navigation";
+import ProfileImage from "../../../public/images/testimonial-01.jpg";
 
 function Sidebar() {
   const pathname = usePathname();
@@ -31,7 +31,7 @@ function Sidebar() {
 
   return (
     <div className="w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden">
-      <div className="w-full h-full bg-white border-r">
+      <div className="w-full h-full border-r">
         {/* logo */}
         <div className="p-4 md:p-6 flex cursor-pointer group items-center gap-2">
           <div className="h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-400 text-white">
@@ -41,7 +41,7 @@ function Sidebar() {
             />
           </div>
           <div>
-            <h1 className="text-sm font-bold text-gray-800">Githr</h1>
+            <h1 className="text-sm font-bold text-white">Githr</h1>
             <p className="text-xs text-gray-500 font-medium">HR Management</p>
           </div>
         </div>
@@ -163,9 +163,7 @@ function Sidebar() {
                   className="rounded-full"
                 />
                 <div className="">
-                  <p className="text-sm font-semibold text-gray-800">
-                    Steve Jobs
-                  </p>
+                  <p className="text-sm font-semibold text-white">Steve Jobs</p>
                   <p className="text-xs font-medium text-gray-500">
                     steve@apple.com
                   </p>

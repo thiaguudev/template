@@ -1,6 +1,5 @@
 import { MarketingConfig } from "@/lib/types";
 
-
 export const marketingConfig: MarketingConfig = {
   mainNav: [
     {
@@ -16,4 +15,4 @@ export const marketingConfig: MarketingConfig = {
       href: "/docs",
     },
   ],
-}
+};
