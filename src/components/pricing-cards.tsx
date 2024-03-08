@@ -29,7 +29,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   };
 
   return (
-    <section className="container flex flex-col items-center text-center">
+    <section className="container flex flex-col items-center text-center mt-5">
       <div className="mx-auto mb-10 flex w-full flex-col gap-5">
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Pricing

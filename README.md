@@ -50,8 +50,16 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 //https://learn.microsoft.com/en-us/partner-center/marketplace/partner-center-portal/pc-saas-fulfillment-webhook
 //www.google.com/search?q=curso+gratuito+rh+senac&sca_esv=c0f11d7a5002bdc2&rlz=1C1GCEU_pt-BRBR1078BR1079&sxsrf=ACQVn09yuToHVUUxkY0Ec2HkhONaiROPiw%3A1709208677972&ei=ZXTgZfP1Oour1sQPn_2GuAI&udm=&ved=0ahUKEwizvOPAwtCEAxWLlZUCHZ--AScQ4dUDCBE&uact=5&oq=curso+gratuito+rh+senac&gs_lp=Egxnd3Mtd2l6LXNlcnAiF2N1cnNvIGdyYXR1aXRvIHJoIHNlbmFjMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5IxQ9Q3wRYzQ5wAXgBkAEAmAGUAaABiAWqAQMwLjW4AQPIAQD4AQGYAgagApwFwgIKEAAYRxjWBBiwA8ICDRAAGIAEGIoFGEMYsAPCAg0QLhiABBiKBRhDGLADwgIFEAAYgASYAwCIBgGQBgqSBwMxLjU&sclient=gws-wiz-serp
 //https://wehelp.crunch.help/pt/pesquisas/recompensas
-//https://www.fikristudio.com/project/kirridesk
+
 //https://www.indiehackers.com/product/rezi/rezi-gpt-saas-app-update-57-5k-mo--NMpr_YqGroud1NliyvA
 //https://www.youtube.com/watch?v=-ieY9ch89zw
 
+//https://semver.org/lang/pt-BR/
+
+// templates
+//https://www.builtatlightspeed.com/demo/avidtemplates-tailbreeze
+//https://www.fikristudio.com/project/kirridesk
 //https://statichunt.com/demo/nextjs-taxonomy
+
+// study
+//https://www.typescriptlang.org/docs/handbook/intro.html

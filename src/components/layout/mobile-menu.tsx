@@ -12,6 +12,7 @@ export default function MobileMenu() {
   // close the mobile menu on click outside
   useEffect(() => {
     const clickHandler = ({ target }: { target: EventTarget | null }): void => {
+      console.log("target", target);
       if (!mobileNav.current || !trigger.current) return;
       if (
         !mobileNavOpen ||
