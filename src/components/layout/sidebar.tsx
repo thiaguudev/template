@@ -20,6 +20,7 @@ import {
 import { useCentralStore } from "@/app/store";
 import { Link, usePathname } from "@/navigation";
 import ProfileImage from "../../../public/images/testimonial-01.jpg";
+import MenuLink from "../menu-link";
 
 function Sidebar() {
   const pathname = usePathname();
@@ -52,102 +53,78 @@ function Sidebar() {
         <div className="flex flex-col h-full justify-between">
           {/* top */}
           <div className="pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-xs">
-            <Link
+            <MenuLink
               href="/app"
-              className={`flex ${
-                pathname === "/app" ? "text-primary" : ""
-              } hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2`}
-            >
-              <Element3 variant="Outline" size={16} />
-              Dashboard
-            </Link>
+              title="Dashboard"
+              active={pathname === "/app"}
+              icon={Element3}
+            />
 
-            <button
-              className={`flex ${
-                pathname === "/app/calendar" ? "text-primary" : ""
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
-            >
-              <Calendar size={16} />
-              Calendar
-            </button>
+            <MenuLink
+              href="/app/calendar"
+              title="Calendar"
+              active={pathname === "/app/calendar"}
+              icon={Calendar}
+            />
 
-            <button
-              className={`flex ${
-                pathname === "/app/timeoff" ? "text-primary" : ""
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
-            >
-              <Timer1 size={16} />
-              Time Off
-            </button>
+            <MenuLink
+              href="/app/timeoff"
+              title="Time Off"
+              active={pathname === "/app/timeoff"}
+              icon={Timer1}
+            />
 
-            <button
-              className={`flex ${
-                pathname === "/app/projects" ? "text-primary" : ""
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
-            >
-              <Folder2 size={16} />
-              Projects
-            </button>
+            <MenuLink
+              href="/app/projects"
+              title="Projects"
+              active={pathname === "/app/projects"}
+              icon={Folder2}
+            />
 
-            <Link
+            <MenuLink
               href="/app/team"
-              className={`flex ${
-                pathname === "/app/team" ? "text-primary" : ""
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
-            >
-              <Profile2User size={16} />
-              Teams
-            </Link>
+              title="Team"
+              active={pathname === "/app/team"}
+              icon={Profile2User}
+            />
 
-            <Link
-              href={"/app/integrations"}
-              className={`flex ${
-                pathname === "/app/integrations" ? "text-primary" : ""
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
-            >
-              <Setting4 size={16} />
-              Integrations
-            </Link>
+            <MenuLink
+              href="/app/integrations"
+              title="Integrations"
+              active={pathname === "/app/integrations"}
+              icon={Setting4}
+            />
 
-            <button
-              className={`flex ${
-                pathname === "/app/benefits" ? "text-primary" : ""
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
-            >
-              <Star size={16} />
-              Benefits
-            </button>
+            <MenuLink
+              href="/app/benefits"
+              title="Benefits"
+              active={pathname === "/app/benefits"}
+              icon={Star}
+            />
 
-            <button
-              className={`flex ${
-                pathname === "/app/documents" ? "text-primary" : ""
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
-            >
-              <Document size={16} />
-              Documents
-            </button>
+            <MenuLink
+              href="/app/documents"
+              title="Documents"
+              active={pathname === "/app/documents"}
+              icon={Document}
+            />
           </div>
 
           <div>
             <div className="text-gray-500 text-xs font-medium md:px-2">
-              <Link
+              <MenuLink
                 href="/app/settings/general"
-                className={`flex ${
-                  pathname === "/app/settings/general" ? "text-primary" : ""
-                } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
-              >
-                <Setting2 size={16} />
-                Settings
-              </Link>
+                title="Settings"
+                active={pathname === "/app/settings/general"}
+                icon={Setting2}
+              />
 
-              <button
-                className={`flex ${
-                  pathname === "/app/support" ? "text-primary" : ""
-                } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
-              >
-                <Headphone size={16} />
-                Support
-              </button>
+              <MenuLink
+                href="/app/support"
+                title="Support"
+                active={pathname === "/app/support"}
+                icon={Headphone}
+              />
             </div>
 
             <hr className="bg-gray-400 mx-2 my-4" />
