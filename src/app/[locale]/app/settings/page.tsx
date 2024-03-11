@@ -39,7 +39,7 @@ export default function Layout() {
         />
 
         <CardSettings
-          href="/app/settings/billing"
+          href="/app/settings/team"
           title="Team"
           description="Review payments, payouts, coupons, and gift cards"
           icon={People}
