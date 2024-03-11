@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import Image from "next/image";
 import {
   ArrowRight2,
-  Calendar,
   Document,
   Element3,
   Folder2,
   Headphone,
+  Messages1,
   Profile2User,
   Setting2,
   Setting4,
@@ -18,9 +18,9 @@ import {
 } from "iconsax-react";
 
 import { useCentralStore } from "@/app/store";
-import { Link, usePathname } from "@/navigation";
-import ProfileImage from "../../../public/images/testimonial-01.jpg";
+import { usePathname } from "@/navigation";
 import MenuLink from "../menu-link";
+import ProfileImage from "../../../public/images/testimonial-01.jpg";
 
 function Sidebar() {
   const pathname = usePathname();
@@ -46,12 +46,9 @@ function Sidebar() {
           </div>
         </div>
 
-        {/* section divider */}
         <hr className="bg-gray-400 mx-2" />
 
-        {/* other section */}
         <div className="flex flex-col h-full justify-between">
-          {/* top */}
           <div className="pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-xs">
             <MenuLink
               href="/app"
@@ -61,10 +58,10 @@ function Sidebar() {
             />
 
             <MenuLink
-              href="/app/calendar"
-              title="Calendar"
-              active={pathname === "/app/calendar"}
-              icon={Calendar}
+              href="/app/surveys"
+              title="Surveys"
+              active={pathname === "/app/surveys"}
+              icon={Messages1}
             />
 
             <MenuLink
@@ -113,7 +110,7 @@ function Sidebar() {
           <div>
             <div className="text-gray-500 text-xs font-medium md:px-2">
               <MenuLink
-                href="/app/settings/general"
+                href="/app/settings"
                 title="Settings"
                 active={pathname === "/app/settings/general"}
                 icon={Setting2}
@@ -129,7 +126,6 @@ function Sidebar() {
 
             <hr className="bg-gray-400 mx-2 my-4" />
 
-            {/* bottom */}
             <div className="flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200">
               <div className="flex items-center gap-2">
                 <Image
