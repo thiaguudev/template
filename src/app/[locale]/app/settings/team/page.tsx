@@ -2,8 +2,6 @@
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
-import LeftSide from "../_components/left-side";
-import RightSide from "../_components/right-side";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -15,6 +13,8 @@ import {
 } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import LeftSide from "../_components/left-side";
+import RightSide from "../_components/right-side";
 
 export default function TeamSettings() {
   const form = useForm();

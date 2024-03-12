@@ -5,7 +5,7 @@ import Image from "next/image";
 import {
   ArrowRight2,
   Document,
-  Element3,
+  Flash,
   Folder2,
   Headphone,
   Messages1,
@@ -21,8 +21,10 @@ import { useCentralStore } from "@/app/store";
 import { usePathname } from "@/navigation";
 import MenuLink from "../menu-link";
 import ProfileImage from "../../../public/images/testimonial-01.jpg";
+import useMediaQuery from "@/hooks/use-media-query";
 
 function Sidebar() {
+  const { isDesktop } = useMediaQuery();
   const pathname = usePathname();
   const { setIsSidebarOpen, isSidebarOpen } = useCentralStore();
 
@@ -31,7 +33,11 @@ function Sidebar() {
   }, [pathname, isSidebarOpen, setIsSidebarOpen]);
 
   return (
-    <div className="w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden">
+    <div
+      className={`w-60 shrink-0 md:block h-screen sticky top-0 ${
+        !isDesktop && "bg-black"
+      }`}
+    >
       <div className="w-full h-full border-r">
         <div className="p-4 md:p-6 flex cursor-pointer group items-center gap-2">
           <div className="h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-600 text-white">
@@ -50,12 +56,10 @@ function Sidebar() {
 
         <div className="flex flex-col h-full justify-between">
           <div className="pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-xs">
-            <MenuLink
-              href="/app"
-              title="Dashboard"
-              active={pathname === "/app"}
-              icon={Element3}
-            />
+            <button className="flex text-primary hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2">
+              <Flash variant="Outline" size={16} />
+              Upgrade
+            </button>
 
             <MenuLink
               href="/app/surveys"

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function useMediaQuery() {
   const [device, setDevice] = useState<"mobile" | "tablet" | "desktop" | null>(
-    null,
+    null
   );
   const [dimensions, setDimensions] = useState<{
     width: number;
@@ -11,15 +11,13 @@ export default function useMediaQuery() {
 
   useEffect(() => {
     const checkDevice = () => {
-      if (window.matchMedia("(max-width: 640px)").matches) {
-        setDevice("mobile");
-      } else if (
+      if (window.matchMedia("(max-width: 640px)").matches) setDevice("mobile");
+      else if (
         window.matchMedia("(min-width: 641px) and (max-width: 1024px)").matches
-      ) {
+      )
         setDevice("tablet");
-      } else {
-        setDevice("desktop");
-      }
+      else setDevice("desktop");
+
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
     };
 
@@ -30,9 +28,7 @@ export default function useMediaQuery() {
     window.addEventListener("resize", checkDevice);
 
     // Cleanup listener
-    return () => {
-      window.removeEventListener("resize", checkDevice);
-    };
+    return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
   return {
