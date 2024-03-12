@@ -1,4 +1,4 @@
-import { Link } from "@/navigation";
+import { Copy, Edit2, Link, Pause, Trash } from "iconsax-react";
 import {
   Card,
   CardContent,
@@ -8,17 +8,18 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "./ui/badge";
 
 type CardSurveyProps = {
-  href: string;
   name: string;
-  status: number;
+  status?: number;
+  type: "NPS" | "CES" | "CSAT" | "Custom";
   description?: string;
 };
 
 export default function CardSurvey({
-  href,
   name,
+  type,
   description,
   status,
 }: CardSurveyProps) {
@@ -32,21 +33,35 @@ export default function CardSurvey({
   }
 
   return (
-    <Link href={`/app/surveys/${href}`}>
-      <Card className="group hover:bg-primary hover:text-white px-3 py-2 h-[136px]">
-        <CardHeader className="p-1">
-          <CardTitle>{name}</CardTitle>
-          <CardDescription className="group-hover:text-white">
-            {description ?? "No description"}
-          </CardDescription>
-        </CardHeader>
-        <CardContent></CardContent>
-        <CardFooter className="p-1 flex justify-center items-center">
-          <Button className="rounded-xl group-hover:bg-white group-hover:text-black">
-            {getStatus(status)}
-          </Button>
-        </CardFooter>
-      </Card>
-    </Link>
+    <Card className="group hover:bg-primary hover:text-white p-3">
+      <CardHeader className="p-1">
+        <CardTitle className="flex justify-between items-center">
+          {name} <Badge>{type}</Badge>
+        </CardTitle>
+        <CardDescription>{description}</CardDescription>
+      </CardHeader>
+      <CardFooter className="flex gap-2 p-1">
+        <Button variant="secondary" className="flex gap-1">
+          <Edit2 size={16} />
+          Edit
+        </Button>
+
+        <Button variant="secondary" className="flex gap-1">
+          <Link size={16} /> Share
+        </Button>
+
+        <Button variant="secondary" className="flex gap-1">
+          <Copy size={16} /> Copy
+        </Button>
+
+        <Button variant="secondary" className="flex gap-1">
+          <Pause size={16} /> Pause
+        </Button>
+
+        <Button variant="destructive" className="flex gap-1">
+          <Trash size={16} /> Delete
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }

@@ -1,11 +1,26 @@
 "use client";
 
+import { useState } from "react";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { AddButton } from "@/components/buttons";
 import { DialogSurvey } from "@/components/dialog-survey";
-import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Copy, Edit2, Link, Pause, Trash } from "iconsax-react";
+import CardSurvey from "@/components/card-survey";
 
 export default function SurveysPage() {
   const [open, setOpen] = useState(false);
+
+  const handleDeleteSurvey = async () => {};
 
   return (
     <div className="p-5">
@@ -22,7 +37,16 @@ export default function SurveysPage() {
         <AddButton onClick={() => setOpen(!open)}>Create survey</AddButton>
         <DialogSurvey open={open} onOpenChange={setOpen} />
       </div>
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div> */}
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5"> */}
+      <div className="flex flex-col gap-5 mt-5">
+        <CardSurvey name="Survey #01" type="NPS" description="Survey NPS #01" />
+        <CardSurvey name="Survey #02" type="NPS" description="Survey NPS #02" />
+        <CardSurvey
+          name="Survey #03"
+          type="CSAT"
+          description="Survey CSAT #03"
+        />
+      </div>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Code+Latin:wght@100..700&family=Madimi+One&family=Protest+Riot&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,4 +65,8 @@
 
 .primary-gradient {
   @apply bg-gradient-to-br from-violet-500 to-violet-400;
+}
+
+* {
+  font-family: "Protest Riot", sans-serif !important;
 }

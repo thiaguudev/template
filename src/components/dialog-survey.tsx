@@ -1,8 +1,8 @@
 "use client";
 
 import { SubmitHandler, useForm } from "react-hook-form";
+import z from "zod";
 
-import { AddButton } from "@/components/buttons";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,12 +12,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Form } from "@/components/ui/form";
-import z from "zod";
+import { useToast } from "@/components/ui/use-toast";
 
 type DialogSurveyProps = {
   open: boolean;
@@ -25,6 +24,8 @@ type DialogSurveyProps = {
 };
 
 export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
+  const { toast } = useToast();
+
   const schema = z.object({
     title: z.string(),
   });
@@ -32,7 +33,11 @@ export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
   const form = useForm<z.infer<typeof schema>>();
 
   const handleSubmit: SubmitHandler<z.infer<typeof schema>> = async (d) => {
-    console.log(d);
+    toast({
+      title: "Successfully to create a survey",
+      description: "",
+      variant: "default",
+    });
   };
 
   return (
@@ -52,7 +57,7 @@ export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
                 <Input id="title" {...form.register("title")} />
               </div>
             </div>
-            <DialogFooter className="sm:flex flex-col-reverse gap-3">
+            <DialogFooter className="sm:flex flex-col-reverse gap-1">
               <Button type="submit">Create Survey</Button>
               <DialogClose asChild>
                 <Button type="button" variant="secondary">
