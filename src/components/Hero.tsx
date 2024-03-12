@@ -1,3 +1,4 @@
+import { Link } from "@/navigation";
 import VideoThumb from "@/public/images/hero-image-01.jpg";
 // import ModalVideo from "@/components/modal-video";
 
@@ -58,20 +59,20 @@ export default function Hero() {
             </p>
             <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
               <div data-aos="fade-up" data-aos-delay="400">
-                <a
-                  className="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0"
+                <Link
+                  className="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0 rounded-xl"
                   href="#0"
                 >
                   Start free trial
-                </a>
+                </Link>
               </div>
               <div data-aos="fade-up" data-aos-delay="600">
-                <a
-                  className="btn text-white bg-gray-700 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
+                <Link
+                  className="btn text-white bg-gray-700 hover:bg-gray-800 w-full sm:w-auto sm:ml-4 rounded-xl"
                   href="#0"
                 >
                   Learn more
-                </a>
+                </Link>
               </div>
             </div>
           </div>

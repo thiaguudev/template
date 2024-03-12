@@ -4,24 +4,20 @@ import { useEffect } from "react";
 import Image from "next/image";
 import {
   ArrowRight2,
-  Document,
   Flash,
   Folder2,
+  Gift,
   Headphone,
   Messages1,
-  Profile2User,
   Setting2,
-  Setting4,
-  Star,
   Star1,
-  Timer1,
 } from "iconsax-react";
 
 import { useCentralStore } from "@/app/store";
 import { usePathname } from "@/navigation";
+import useMediaQuery from "@/hooks/use-media-query";
 import MenuLink from "../menu-link";
 import ProfileImage from "../../../public/images/testimonial-01.jpg";
-import useMediaQuery from "@/hooks/use-media-query";
 
 function Sidebar() {
   const { isDesktop } = useMediaQuery();
@@ -61,19 +57,10 @@ function Sidebar() {
               Upgrade
             </button>
 
-            <MenuLink
-              href="/app/surveys"
-              title="Surveys"
-              active={pathname === "/app/surveys"}
-              icon={Messages1}
-            />
-
-            <MenuLink
-              href="/app/timeoff"
-              title="Time Off"
-              active={pathname === "/app/timeoff"}
-              icon={Timer1}
-            />
+            <button className="flex hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2">
+              <Gift variant="Outline" size={16} />
+              Earn $50
+            </button>
 
             <MenuLink
               href="/app/projects"
@@ -83,31 +70,10 @@ function Sidebar() {
             />
 
             <MenuLink
-              href="/app/team"
-              title="Team"
-              active={pathname === "/app/team"}
-              icon={Profile2User}
-            />
-
-            <MenuLink
-              href="/app/integrations"
-              title="Integrations"
-              active={pathname === "/app/integrations"}
-              icon={Setting4}
-            />
-
-            <MenuLink
-              href="/app/benefits"
-              title="Benefits"
-              active={pathname === "/app/benefits"}
-              icon={Star}
-            />
-
-            <MenuLink
-              href="/app/documents"
-              title="Documents"
-              active={pathname === "/app/documents"}
-              icon={Document}
+              href="/app/surveys"
+              title="Surveys"
+              active={pathname === "/app/surveys"}
+              icon={Messages1}
             />
           </div>
 

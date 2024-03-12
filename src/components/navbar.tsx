@@ -3,7 +3,7 @@ import Image from "next/image";
 import {
   Add,
   CalendarEdit,
-  DirectNotification,
+  Notification,
   SearchNormal1,
   SidebarLeft,
 } from "iconsax-react";
@@ -20,7 +20,6 @@ function Navbar({
   return (
     <div>
       <div className="flex p-4 md:p-6 justify-between items-center">
-        {/* profile/left section */}
         <div className="flex items-center justify-between gap-2">
           <Image
             src={ProfileImage}
@@ -42,14 +41,13 @@ function Navbar({
           <SidebarLeft size={16} />
         </button>
 
-        {/* right section */}
         <div className="text-gray-500 hidden md:flex gap-2">
           <button className="all-center h-8 w-8 duration-200 hover:bg-gray-100 rounded-xl">
             <SearchNormal1 size={16} />
           </button>
 
           <button className="all-center h-8 w-8 duration-200 hover:bg-gray-100 rounded-xl">
-            <DirectNotification size={16} />
+            <Notification size={16} />
           </button>
 
           <button className="btn h-8 w-8 gap-1 md:w-auto md:border py-1 px-2 duration-200 hover:bg-gray-100 rounded-xl text-xs all-center">

@@ -1,3 +1,6 @@
+import { Link } from "@/navigation";
+import { Input } from "./ui/input";
+
 export default function Newsletter() {
   return (
     <section>
@@ -48,18 +51,18 @@ export default function Newsletter() {
 
             <form className="w-full lg:w-1/2">
               <div className="flex flex-col sm:flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:max-w-none">
-                <input
+                <Input
                   type="email"
-                  className="w-full appearance-none bg-purple-700 border border-purple-500 focus:border-purple-300 rounded-sm px-4 py-3 mb-2 sm:mb-0 sm:mr-2 text-white placeholder-purple-400"
+                  className="w-full appearance-none bg-purple-700 border border-purple-500 focus:border-purple-300 px-4 py-3 mb-2 sm:mb-0 sm:mr-2 text-white placeholder-purple-400 rounded-xl h-12"
                   placeholder="Your best email…"
                   aria-label="Your best email…"
                 />
-                <a
-                  className="btn text-purple-600 bg-purple-100 hover:bg-white shadow"
+                <Link
+                  className="btn text-purple-600 bg-purple-100 hover:bg-white shadow rounded-xl"
                   href="#0"
                 >
                   Subscribe
-                </a>
+                </Link>
               </div>
             </form>
           </div>
