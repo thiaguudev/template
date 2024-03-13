@@ -25,18 +25,14 @@ export default function CardSettings({
 }: CardSettingsProps) {
   return (
     <Link href={href}>
-      <Card className="group hover:bg-primary hover:text-white h-[180px]">
-        <CardHeader>
-          <CardTitle>
+      <Card className="hover:border p-3 hover:border-primary max-h-32 h-full hover:scale-105">
+        <CardHeader className="flex flex-row items-center gap-3">
+          <CardTitle className="flex flex-col items-center justify-center text-center gap-2 min-w-24">
             <Icon className="stroke-primary group-hover" />
+            <span>{title}</span>
           </CardTitle>
-          <CardDescription className="group-hover:text-white">
-            {title}
-          </CardDescription>
+          <CardDescription>{description}</CardDescription>
         </CardHeader>
-        <CardContent>
-          <p>{description}</p>
-        </CardContent>
       </Card>
     </Link>
   );

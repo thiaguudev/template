@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,

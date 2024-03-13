@@ -9,6 +9,10 @@ import {
 } from "iconsax-react";
 
 import ProfileImage from "../../public/images/testimonial-01.jpg";
+import UserNav from "./UserNav";
+import { ThemeSwitcher } from "./ThemeSwitcher";
+import { Button } from "./ui/button";
+import { AddButton } from "./buttons";
 
 function Navbar({
   isOpen,
@@ -29,8 +33,12 @@ function Navbar({
             className="rounded-full"
           />
           <div className="">
-            <p className="text-sm font-semibold text-white">Vitória Carolina</p>
-            <p className="text-xs font-medium text-gray-500">Welcome back</p>
+            <p className="text-sm font-semibold text-foreground">
+              Vitória Carolina
+            </p>
+            <p className="text-xs font-medium text-muted-foreground">
+              Welcome back
+            </p>
           </div>
         </div>
 
@@ -42,23 +50,25 @@ function Navbar({
         </button>
 
         <div className="text-gray-500 hidden md:flex gap-2">
-          <button className="all-center h-8 w-8 duration-200 hover:bg-gray-100 rounded-xl">
-            <SearchNormal1 size={16} />
-          </button>
+          <Button variant="secondary" size="icon" className="hover:bg-gray-100">
+            <SearchNormal1
+              size={16}
+              className="hover:stroke-black hover:text-black"
+            />
+          </Button>
 
-          <button className="all-center h-8 w-8 duration-200 hover:bg-gray-100 rounded-xl">
-            <Notification size={16} />
-          </button>
+          <Button variant="secondary" size="icon" className="hover:bg-gray-100">
+            <Notification
+              size={16}
+              className="hover:stroke-black hover:text-black"
+            />
+          </Button>
 
-          <button className="btn h-8 w-8 gap-1 md:w-auto md:border py-1 px-2 duration-200 hover:bg-gray-100 rounded-xl text-xs all-center">
-            <CalendarEdit size={16} />
-            <span className="hidden md:inline">Schedule</span>
-          </button>
+          <ThemeSwitcher />
 
-          <button className="h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-white rounded-xl text-xs md:flex items-center justify-center">
-            <Add size={16} />
-            <span className="hidden md:inline">Create survey</span>
-          </button>
+          <AddButton onClick={() => console.log("")}>
+            <span className="hidden md:inline">Create Survey</span>
+          </AddButton>
         </div>
       </div>
 

@@ -1,24 +1,64 @@
+"use client";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import LeftSide from "../_components/left-side";
-import RightSide from "../_components/right-side";
+import { useToast } from "@/components/ui/use-toast";
+
+export function AlertDialogDemo({ onConfirm }: any) {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive">Delete Project</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={onConfirm}>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
 
 export default function DangerZoneSettings() {
+  const { toast } = useToast();
+
+  const handleDelete = () => {
+    toast({
+      title: "Successfully on exclude the project",
+    });
+  };
+
   return (
     <div className="p-5">
-      <h1 className="text-2xl text-primary font-bold">General Settings</h1>
-      <div className="flex">
-        <LeftSide>
-          <p className="font-semibold text-lg">Delete project</p>
-          <p>
-            This will permanently delete your entire project. All your surveys
-            and widgets will be deleted permanently.
-          </p>
-        </LeftSide>
-        <RightSide>
-          <Button variant="destructive" className="rounded-xl">
-            Delete project
-          </Button>
-        </RightSide>
+      <div className="flex flex-col text-center md:text-start">
+        <h1 className="text-2xl mb-3 text-primary font-black">Danger Zone</h1>
+        <p className="text-muted-foreground">Manage dangerous settings.</p>
+      </div>
+
+      <div className="mt-5">
+        <AlertDialogDemo onConfirm={handleDelete} />
+        <span className="ml-3 text-muted-foreground">
+          This will permanently delete your entire project. All your surveys and
+          widgets will be deleted permanently.
+        </span>
       </div>
     </div>
   );

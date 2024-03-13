@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang={locale}>
       <body
         className={cn(
-          "antialiased bg-gray-900 text-gray-200 tracking-tight",
+          "antialiased bg-background tracking-tight",
           fontSans.className
         )}
       >

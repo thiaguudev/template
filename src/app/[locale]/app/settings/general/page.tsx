@@ -73,7 +73,7 @@ export default function GeneralSettings() {
               name="notifications"
               render={({ field }) => {
                 return (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md shadow">
+                  <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md">
                     <FormControl>
                       <Checkbox
                         checked={field.value}

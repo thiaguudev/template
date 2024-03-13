@@ -5,9 +5,7 @@ import Image from "next/image";
 import {
   ArrowRight2,
   Flash,
-  Folder2,
   Gift,
-  Headphone,
   Messages1,
   Setting2,
   Star1,
@@ -17,7 +15,9 @@ import { useCentralStore } from "@/app/store";
 import { usePathname } from "@/navigation";
 import useMediaQuery from "@/hooks/use-media-query";
 import MenuLink from "../menu-link";
-import ProfileImage from "../../../public/images/testimonial-01.jpg";
+
+import { Button } from "../ui/button";
+import UserNav from "../UserNav";
 
 function Sidebar() {
   const { isDesktop } = useMediaQuery();
@@ -43,8 +43,10 @@ function Sidebar() {
             />
           </div>
           <div>
-            <h1 className="text-sm font-bold text-white">Worked task</h1>
-            <p className="text-xs text-gray-500 font-medium">Survey Apoli</p>
+            <h1 className="text-sm text-foreground font-bold">Worked task</h1>
+            <p className="text-xs text-muted-foreground font-medium">
+              Survey Apoli
+            </p>
           </div>
         </div>
 
@@ -63,13 +65,6 @@ function Sidebar() {
             </button>
 
             <MenuLink
-              href="/app/projects"
-              title="Projects"
-              active={pathname === "/app/projects"}
-              icon={Folder2}
-            />
-
-            <MenuLink
               href="/app/surveys"
               title="Surveys"
               active={pathname === "/app/surveys"}
@@ -82,42 +77,19 @@ function Sidebar() {
               <MenuLink
                 href="/app/settings"
                 title="Settings"
-                active={pathname === "/app/settings/general"}
+                active={pathname === "/app/settings"}
                 icon={Setting2}
               />
 
-              <MenuLink
-                href="/app/support"
-                title="Support"
-                active={pathname === "/app/support"}
-                icon={Headphone}
-              />
+              <Button variant="destructive" className="w-full hover:scale-105">
+                Sign Out
+              </Button>
             </div>
 
             <hr className="bg-gray-400 mx-2 my-4" />
 
             <div className="flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200">
-              <div className="flex items-center gap-2">
-                <Image
-                  src={ProfileImage}
-                  alt="User"
-                  width={36}
-                  height={36}
-                  className="rounded-full"
-                />
-                <div className="">
-                  <p className="text-sm font-semibold text-white">
-                    Vitória Carolina
-                  </p>
-                  <p className="text-xs font-medium text-gray-500">
-                    vitoria@carolina.com
-                  </p>
-                </div>
-              </div>
-
-              <button className="text-gray-500">
-                <ArrowRight2 size={16} />
-              </button>
+              <UserNav />
             </div>
           </div>
         </div>

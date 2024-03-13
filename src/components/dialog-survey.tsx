@@ -48,7 +48,7 @@ export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] max-w-[350px] w-full bg-black rounded-xl">
+      <DialogContent className="sm:max-w-[425px] max-w-[350px] w-full bg-background rounded-xl">
         <DialogHeader>
           <DialogTitle>Create a Survey</DialogTitle>
           <DialogDescription>

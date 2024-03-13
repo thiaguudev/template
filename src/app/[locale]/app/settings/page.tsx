@@ -30,13 +30,6 @@ export default function Layout() {
         />
 
         <CardSettings
-          href="/app/settings/security"
-          title="Login & security"
-          description="Update your password and secure your account"
-          icon={Security}
-        />
-
-        <CardSettings
           href="/app/settings/billing"
           title="Billing and payments"
           description="Review payments, payouts, coupons, and gift cards"
@@ -55,13 +48,6 @@ export default function Layout() {
           title="Notifications"
           description="Choose notification preferences and how you want to be contacted"
           icon={NotificationBing}
-        />
-
-        <CardSettings
-          href="/app/settings/powered-by"
-          title="Powered by"
-          description="Manage Powered By badge for all your forms, widgets"
-          icon={Building3}
         />
 
         <CardSettings

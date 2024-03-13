@@ -1,4 +1,4 @@
-import { Copy, Edit2, Link, Pause, Trash } from "iconsax-react";
+"use client";
 
 import {
   Card,
@@ -7,8 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "@/navigation";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "./ui/button";
+import dynamic from "next/dynamic";
+const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 type CardSurveyProps = {
   name: string;
@@ -23,42 +27,82 @@ export default function CardSurvey({
   description,
   quantity,
 }: CardSurveyProps) {
+  const getSurveyType = (type: CardSurveyProps["type"]) => {
+    let className = "bg-gray-500";
+
+    if (type === "NPS") className = "bg-emerald-500";
+    else if (type === "CSAT") className = "bg-red-500";
+    else if (type === "CES") className = "bg-yellow-500";
+
+    return <Badge className={className}>{type}</Badge>;
+  };
+
+  const chart = {
+    series: [215, 600, 286],
+    options: {
+      legend: { show: false },
+      dataLabels: { enabled: false },
+      fill: { colors: ["#7FD320", "#9B9B9B", "#FF0054"] },
+      // labels: ["Promoters", "Neutrals", "Detractors"],
+      plotOptions: {
+        pie: {
+          expandOnClick: false,
+          donut: {
+            size: "75%",
+            labels: {
+              show: true,
+              name: { show: false },
+              total: {
+                show: true,
+                showAlways: true,
+                formatter: function (w: any) {
+                  // const totals = w.globals.seriesTotals;
+                  // const result = totals.reduce((a: any, b: any) => a + b, 0);
+                  // return (result / 1000).toFixed(3);
+                  return String(quantity);
+                },
+              },
+            },
+          },
+        },
+      },
+    } as ApexCharts.ApexOptions,
+  };
+
   return (
-    <Card className="group hover:bg-primary hover:text-white p-3">
-      <CardHeader className="p-1">
-        <CardTitle className="flex gap-3 items-center">
-          {name} <Badge>{type}</Badge>
-        </CardTitle>
-        <CardDescription className="flex justify-between mt-3 gap-3 h-full max-h-[150px] overflow-hidden text-ellipsis">
-          {description}
-          <div className="text-center">
-            <span className="font-black text-2xl block">{quantity}</span>
-            responses
+    <Link href="/#">
+      <Card className="group hover:border p-3 hover:border-primary hover:scale-105">
+        <CardHeader className="p-1">
+          <div className="flex justify-between flex-row">
+            <div className="p-3 flex flex-col grow">
+              <CardTitle className="flex gap-3 items-center">
+                {name} {getSurveyType(type)}
+              </CardTitle>
+              <CardDescription>{description}</CardDescription>
+            </div>
+
+            <ApexChart
+              type="donut"
+              options={chart.options}
+              series={chart.series}
+              height={100}
+              width={65}
+            />
           </div>
-        </CardDescription>
-      </CardHeader>
-      <CardFooter className="hidden md:flex gap-2 p-1">
-        <Button variant="secondary" className="flex gap-1">
-          <Edit2 size={16} />
-          Edit
-        </Button>
+        </CardHeader>
 
-        <Button variant="secondary" className="flex gap-1">
-          <Link size={16} /> Share
-        </Button>
-
-        <Button variant="secondary" className="flex gap-1">
-          <Copy size={16} /> Copy
-        </Button>
-
-        <Button variant="secondary" className="flex gap-1">
-          <Pause size={16} /> Pause
-        </Button>
-
-        <Button variant="destructive" className="flex gap-1">
-          <Trash size={16} /> Delete
-        </Button>
-      </CardFooter>
-    </Card>
+        <CardFooter className="flex justify-center items-center p-1">
+          <Link
+            href={""}
+            className={cn(
+              buttonVariants(),
+              "hover:bg-foreground hover:text-background"
+            )}
+          >
+            View Analytics
+          </Link>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 }

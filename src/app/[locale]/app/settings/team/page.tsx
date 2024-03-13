@@ -23,7 +23,7 @@ const teamMembers = [
     id: "1653wew",
     name: "John Doe",
     email: "max158@hotmail.com",
-    role: "member",
+    role: "administrator",
     lastLogin: "---",
     datedAdded: new Date(),
   },
@@ -39,7 +39,7 @@ const teamMembers = [
     id: "1653wqa",
     name: "Duana Johnson",
     email: "duaduajon@gmail.com",
-    role: "member",
+    role: "administrator",
     lastLogin: "---",
     datedAdded: new Date(),
   },
@@ -53,7 +53,7 @@ type CardUserProps = {
 
 function CardUser({ id, name, email }: CardUserProps) {
   return (
-    <div className=" flex bg-black shadow-xl p-4 rounded-xl flex-col space-y-5 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+    <div className=" flex bg-background shadow-xl p-4 rounded-xl flex-col space-y-5 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
       <div className="flex gap-3 max-w-[350px] w-full">
         <div className="flex items-center gap-5 grow">
           <Avatar>
