@@ -14,7 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
-export function AlertDialogDemo({ onConfirm }: any) {
+function AlertDialogDemo({ onConfirm }: any) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
