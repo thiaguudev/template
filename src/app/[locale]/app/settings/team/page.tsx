@@ -53,8 +53,8 @@ type CardUserProps = {
 
 function CardUser({ id, name, email }: CardUserProps) {
   return (
-    <div className=" flex bg-black shadow-xl p-4 rounded-xl flex-col space-y-5 sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex gap-3 min-w-[350px]">
+    <div className=" flex bg-black shadow-xl p-4 rounded-xl flex-col space-y-5 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+      <div className="flex gap-3 max-w-[350px] w-full">
         <div className="flex items-center gap-5 grow">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
