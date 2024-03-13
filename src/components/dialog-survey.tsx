@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Form } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "@/navigation";
 
 type DialogSurveyProps = {
   open: boolean;
@@ -25,6 +26,7 @@ type DialogSurveyProps = {
 
 export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
   const { toast } = useToast();
+  const router = useRouter();
 
   const schema = z.object({
     title: z.string(),
@@ -33,11 +35,15 @@ export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
   const form = useForm<z.infer<typeof schema>>();
 
   const handleSubmit: SubmitHandler<z.infer<typeof schema>> = async (d) => {
+    const surveyId = "x12463";
+
     toast({
       title: "Successfully to create a survey",
       description: "",
       variant: "default",
     });
+
+    router.push(`/surveys/${surveyId}`);
   };
 
   return (

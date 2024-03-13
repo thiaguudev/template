@@ -1,83 +1,123 @@
 "use client";
-import { useForm } from "react-hook-form";
 
+import { SubmitHandler, useForm } from "react-hook-form";
+import z from "zod";
+import { Edit, Trash2 } from "lucide-react";
+
+import { useToast } from "@/components/ui/use-toast";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Progress } from "@/components/ui/progress";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import LeftSide from "../_components/left-side";
-import RightSide from "../_components/right-side";
+
+const teamMembers = [
+  {
+    id: "1653waq",
+    name: "Bob Dylan",
+    email: "bob.dylan@gmail.com",
+    role: "member",
+    lastLogin: "---",
+    datedAdded: new Date(),
+  },
+  {
+    id: "1653wew",
+    name: "John Doe",
+    email: "max158@hotmail.com",
+    role: "member",
+    lastLogin: "---",
+    datedAdded: new Date(),
+  },
+  {
+    id: "1653wq",
+    name: "Joana Med.",
+    email: "joana8@email.com",
+    role: "member",
+    lastLogin: "---",
+    datedAdded: new Date(),
+  },
+  {
+    id: "1653wqa",
+    name: "Duana Johnson",
+    email: "duaduajon@gmail.com",
+    role: "member",
+    lastLogin: "---",
+    datedAdded: new Date(),
+  },
+];
+
+type CardUserProps = {
+  id: string;
+  name: string;
+  email: string;
+};
+
+function CardUser({ id, name, email }: CardUserProps) {
+  return (
+    <div className=" flex bg-black shadow-xl p-4 rounded-xl flex-col space-y-5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex gap-3 min-w-[350px]">
+        <div className="flex items-center gap-5 grow">
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            <AvatarFallback>VC</AvatarFallback>
+          </Avatar>
+
+          <div className="w-full max-w-[250px]">
+            <p>{name}</p>
+            <p className="text-muted-foreground">{email}</p>
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Switch id="status" />
+          <Label htmlFor="status">Active</Label>
+        </div>
+      </div>
+
+      <div className="flex gap-1">
+        <Button className="bg-blue-500 group hover:bg-white hover:text-blue-500">
+          <Edit className="mr-2 h-4 w-4 group-hover:text-blue-500" /> Edit
+        </Button>
+
+        <Button className="bg-red-500 group hover:bg-white hover:text-red-500">
+          <Trash2 className="mr-2 h-4 w-4 group-hover:text-red-500" /> Delete
+        </Button>
+      </div>
+    </div>
+  );
+}
 
 export default function TeamSettings() {
-  const form = useForm();
+  const { toast } = useToast();
 
-  function handleOnSubmit(d: any) {
-    console.log(d);
-  }
+  const schema = z.object({
+    email: z.string().email(),
+  });
+
+  const form = useForm<z.infer<typeof schema>>();
+
+  const handleSubmit: SubmitHandler<z.infer<typeof schema>> = (d) => {
+    toast({
+      title: "Submitting form",
+      description: JSON.stringify(d, null, 2),
+    });
+  };
 
   return (
     <div className="p-5">
-      <h1 className="text-2xl text-primary font-bold">Team Settings</h1>
-      <div className="flex flex-col">
-        <div className="flex">
-          <LeftSide>
-            <p className="font-semibold text-lg">Invite teammates</p>
-            <p>
-              Invite new members to your collaborate with you in your Senja
-              project.
-            </p>
-          </LeftSide>
-          <RightSide>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(handleOnSubmit)}
-                className="flex gap-3 items-center"
-              >
-                <Input
-                  placeholder="Email address"
-                  className="rounded-xl w-full"
-                />
-                <Select defaultValue="teammember">
-                  <SelectTrigger className="w-[180px] rounded-xl">
-                    <SelectValue placeholder="Theme" />
-                  </SelectTrigger>
-                  <SelectContent className="rounded-xl">
-                    <SelectItem value="admin">Admin</SelectItem>
-                    <SelectItem value="teammember">Team member</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Button className="rounded-xl">Send invite</Button>
-              </form>
-            </Form>
-          </RightSide>
-        </div>
-        <div className="flex">
-          <LeftSide>
-            <p className="font-semibold text-lg">Manage Teammates</p>
-            <p>Manage existing teammates.</p>
-            <div className="w-[80%]">
-              <div className="flex justify-between items-center mb-1">
-                <span>Seats</span>
-                <span>1 / 1</span>
-              </div>
-              <Progress value={100} className="w-full" />
-            </div>
-          </LeftSide>
-          <RightSide>
-            <Card>
-              <CardHeader>
-                <CardTitle>Thiago</CardTitle>
-              </CardHeader>
-            </Card>
-          </RightSide>
+      <div className="flex flex-col text-center md:text-start">
+        <h1 className="text-2xl mb-3 text-primary font-black">Team Settings</h1>
+        <p className="text-muted-foreground">Manage your seats for team.</p>
+      </div>
+      <div className="mt-5">
+        <div className="flex flex-col gap-3">
+          {teamMembers.map((member) => (
+            <CardUser
+              key={member.id}
+              id={member.id}
+              name={member.name}
+              email={member.email}
+            />
+          ))}
         </div>
       </div>
     </div>

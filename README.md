@@ -63,3 +63,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 // study
 //https://www.typescriptlang.org/docs/handbook/intro.html
+
+<!-- <div class="senja-embed" data-id="b05feecc-642a-4800-bdc1-9a5d0c59e32e" data-lazyload="false"></div>
+<script async type="text/javascript" src="https://static.senja.io/dist/platform.js"></script> -->

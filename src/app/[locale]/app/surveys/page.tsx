@@ -9,8 +9,6 @@ import CardSurvey from "@/components/card-survey";
 export default function SurveysPage() {
   const [open, setOpen] = useState(false);
 
-  const handleDeleteSurvey = async () => {};
-
   return (
     <div className="p-5">
       <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
@@ -26,7 +24,6 @@ export default function SurveysPage() {
         <AddButton onClick={() => setOpen(!open)}>Create survey</AddButton>
         <DialogSurvey open={open} onOpenChange={setOpen} />
       </div>
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5"> */}
       <div className="flex flex-col gap-5 mt-5">
         <CardSurvey
           name="Survey #01"
