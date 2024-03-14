@@ -25,9 +25,9 @@ function Sidebar() {
   const pathname = usePathname();
   const { setIsSidebarOpen, isSidebarOpen } = useCentralStore();
 
-  useEffect(() => {
-    if (!isSidebarOpen) setIsSidebarOpen(!isSidebarOpen);
-  }, [pathname, isSidebarOpen, setIsSidebarOpen]);
+  // useEffect(() => {
+  //   if (!isSidebarOpen) setIsSidebarOpen(!isSidebarOpen);
+  // }, [pathname, isSidebarOpen, setIsSidebarOpen]);
 
   return (
     <div
