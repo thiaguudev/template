@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, AreaChart, DonutChart } from "@tremor/react";
+import { AreaChart, DonutChart, Card } from "@tremor/react";
 
 const chartdata = [
   {
@@ -103,6 +103,13 @@ const data = [
     change: "-1.2%",
     changeType: "negative",
   },
+
+  {
+    name: "Interactions",
+    value: "538",
+    change: "59%",
+    changeType: "positive",
+  },
 ];
 
 const sales = [
@@ -123,7 +130,7 @@ const sales = [
 export default function Example() {
   return (
     <div className="">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 p-5">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 p-5">
         {data.map((item) => (
           <Card key={item.name}>
             <p className="flex items-start justify-between">
@@ -147,25 +154,24 @@ export default function Example() {
           </Card>
         ))}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-5">
-        <Card>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-5">
+        <Card className="md:col-span-2">
           <AreaChart
             className="h-60"
             data={chartdata}
             index="date"
             categories={["Promoters", "Neutrals", "Detractors"]}
-            colors={["emerald-900", "yellow-400", "red-800"]}
-            // valueFormatter={dataFormatter}
+            colors={["emerald-300", "yellow-300", "red-300"]}
             yAxisWidth={60}
             onValueChange={(v) => console.log(v)}
           />
         </Card>
-        <Card className="flex items-center justify-center">
+        <Card className="flex items-center justify-center md:col-span-1">
           <DonutChart
             data={sales}
             category="sales"
             index="name"
-            colors={["emerald-900", "yellow-400", "red-800"]}
+            colors={["emerald-300", "yellow-300", "red-300"]}
           />
         </Card>
       </div>
