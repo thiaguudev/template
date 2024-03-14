@@ -18,6 +18,7 @@ import MenuLink from "../menu-link";
 
 import { Button } from "../ui/button";
 import UserNav from "../UserNav";
+import { ThemeSwitcherTabs } from "../ThemeSwitcher";
 
 function Sidebar() {
   const { isDesktop } = useMediaQuery();
@@ -31,7 +32,7 @@ function Sidebar() {
   return (
     <div
       className={`w-60 shrink-0 md:block h-screen sticky top-0 ${
-        !isDesktop && "bg-black"
+        !isDesktop && "bg-background"
       }`}
     >
       <div className="w-full h-full border-r">
@@ -80,6 +81,8 @@ function Sidebar() {
                 active={pathname === "/app/settings"}
                 icon={Setting2}
               />
+
+              <ThemeSwitcherTabs />
 
               <Button variant="destructive" className="w-full hover:scale-105">
                 Sign Out

@@ -5,6 +5,23 @@ import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/shared/icons";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+
+export function ThemeSwitcherTabs() {
+  const { setTheme, theme } = useTheme();
+  return (
+    <div className="flex items-center px-6 py-2 h-15 w-full gap-2">
+      <Switch
+        id="airplane-mode"
+        onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+        defaultChecked={theme === "dark"}
+      />
+      <Label htmlFor="airplane-mode">Toggle theme</Label>
+      <span className="sr-only">Toggle theme</span>
+    </div>
+  );
+}
 
 export function ThemeSwitcher() {
   const { setTheme, theme } = useTheme();
