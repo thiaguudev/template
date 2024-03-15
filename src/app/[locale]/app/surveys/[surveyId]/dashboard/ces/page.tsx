@@ -1,81 +1,81 @@
 "use client";
 
-import { AreaChart, DonutChart, Card } from "@tremor/react";
-
+import { AreaChart } from "@/components/charts";
 import CardChart from "@/components/charts/card-chart";
+import DonutChart from "@/components/charts/donut-chart";
 
 const chartdata = [
   {
     date: "Jan 22",
-    Detractors: 888,
-    Neutrals: 35,
-    Promoters: 858,
+    "High effort": 888,
+    "Medium effort": 35,
+    "Low effort": 858,
   },
   {
     date: "Feb 22",
-    Detractors: 745,
-    Neutrals: 2338,
-    Promoters: 356,
+    "High effort": 745,
+    "Medium effort": 2338,
+    "Low effort": 356,
   },
   {
     date: "Mar 22",
-    Detractors: 652,
-    Neutrals: 2338,
-    Promoters: 100,
+    "High effort": 652,
+    "Medium effort": 2338,
+    "Low effort": 100,
   },
   {
     date: "Apr 22",
-    Detractors: 241,
-    Neutrals: 398,
-    Promoters: 158,
+    "High effort": 241,
+    "Medium effort": 398,
+    "Low effort": 158,
   },
   {
     date: "May 22",
-    Detractors: 2890,
-    Neutrals: 684,
-    Promoters: 685,
+    "High effort": 2890,
+    "Medium effort": 684,
+    "Low effort": 685,
   },
   {
     date: "Jun 22",
-    Detractors: 2890,
-    Neutrals: 24,
-    Promoters: 253,
+    "High effort": 2890,
+    "Medium effort": 24,
+    "Low effort": 253,
   },
   {
     date: "Jul 22",
-    Detractors: 2890,
-    Neutrals: 684,
-    Promoters: 521,
+    "High effort": 2890,
+    "Medium effort": 684,
+    "Low effort": 521,
   },
   {
     date: "Aug 22",
-    Detractors: 154,
-    Neutrals: 168,
-    Promoters: 698,
+    "High effort": 154,
+    "Medium effort": 168,
+    "Low effort": 698,
   },
   {
     date: "Sep 22",
-    Detractors: 352,
-    Neutrals: 157,
-    Promoters: 584,
+    "High effort": 352,
+    "Medium effort": 157,
+    "Low effort": 584,
   },
   {
     date: "Oct 22",
-    Detractors: 168,
-    Neutrals: 3458,
-    Promoters: 10,
+    "High effort": 168,
+    "Medium effort": 3458,
+    "Low effort": 10,
   },
   {
     date: "Nov 22",
-    Detractors: 584,
-    Neutrals: 157,
-    Promoters: 18,
+    "High effort": 584,
+    "Medium effort": 157,
+    "Low effort": 18,
   },
   {
     date: "Dec 22",
-    Detractors: 4856,
-    Neutrals: 498,
-    Promoters: 689,
+    "High effort": 4856,
+    "Medium effort": 498,
+    "Low effort": 689,
   },
 ];
 
@@ -121,34 +121,33 @@ const sales = [
   },
 ];
 
+const colors = ["emerald", "amber", "rose", "zinc"];
+
 export default function DashboardPage() {
   return (
     <div className="">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 p-5">
-        {data.map((item) => (
-          <CardChart key={item.name} {...item} />
+        {data.map((item, index) => (
+          <CardChart
+            key={item.name}
+            {...item}
+            decorationColor={colors[index]}
+          />
         ))}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-5">
-        <Card className="md:col-span-2">
-          <AreaChart
-            className="h-60"
-            data={chartdata}
-            index="date"
-            categories={["Promoters", "Neutrals", "Detractors"]}
-            colors={["emerald-300", "yellow-300", "red-300"]}
-            yAxisWidth={60}
-            onValueChange={(v) => console.log(v)}
-          />
-        </Card>
-        <Card className="flex items-center justify-center md:col-span-1">
-          <DonutChart
-            data={sales}
-            category="sales"
-            index="name"
-            colors={["emerald-300", "yellow-300", "red-300"]}
-          />
-        </Card>
+        <AreaChart
+          data={chartdata}
+          index="date"
+          categories={["low effort", "medium effort", "high effort"]}
+          colors={["emerald-300", "yellow-300", "red-300"]}
+        />
+        <DonutChart
+          data={sales}
+          category="sales"
+          index="name"
+          colors={["emerald-300", "yellow-300", "red-300"]}
+        />
       </div>
     </div>
   );
