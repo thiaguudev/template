@@ -26,34 +26,39 @@ export default function SurveysPage() {
       </div>
       <div className="grid gap-3 mt-5 grid-cols-1 xs:grid-cols-2 sm:grid-cols-3">
         <CardSurvey
+          id="1"
           name="Survey #01"
-          type="NPS"
+          type="nps"
           description="Survey #01 ..."
           quantity={1689}
         />
         <CardSurvey
+          id="2"
           name="Survey #02"
-          type="NPS"
+          type="nps"
           description="Survey #02 ..."
           quantity={21}
         />
         <CardSurvey
+          id="3"
           name="Survey #03"
-          type="CSAT"
+          type="csat"
           description="Survey #03 ..."
           quantity={9}
         />
 
         <CardSurvey
+          id="4"
           name="Survey #04"
-          type="Custom"
+          type="custom"
           description="Survey #04 ..."
           quantity={289}
         />
 
         <CardSurvey
+          id="5"
           name="Survey #05"
-          type="CES"
+          type="ces"
           description="Survey #05 ..."
           quantity={997}
         />

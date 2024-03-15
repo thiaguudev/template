@@ -15,13 +15,15 @@ import dynamic from "next/dynamic";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 type CardSurveyProps = {
+  id: string;
   name: string;
-  type: "NPS" | "CES" | "CSAT" | "Custom";
+  type: "nps" | "ces" | "csat" | "custom";
   description?: string;
   quantity: number;
 };
 
 export default function CardSurvey({
+  id,
   name,
   type,
   description,
@@ -30,11 +32,11 @@ export default function CardSurvey({
   const getSurveyType = (type: CardSurveyProps["type"]) => {
     let className = "bg-gray-500";
 
-    if (type === "NPS") className = "bg-emerald-500";
-    else if (type === "CSAT") className = "bg-red-500";
-    else if (type === "CES") className = "bg-yellow-500";
+    if (type === "nps") className = "bg-emerald-500";
+    else if (type === "csat") className = "bg-red-500";
+    else if (type === "ces") className = "bg-yellow-500";
 
-    return <Badge className={className}>{type}</Badge>;
+    return <Badge className={className}>{type.toUpperCase()}</Badge>;
   };
 
   const chart = {
@@ -56,9 +58,6 @@ export default function CardSurvey({
                 show: true,
                 showAlways: true,
                 formatter: function (w: any) {
-                  // const totals = w.globals.seriesTotals;
-                  // const result = totals.reduce((a: any, b: any) => a + b, 0);
-                  // return (result / 1000).toFixed(3);
                   return String(quantity);
                 },
               },
@@ -70,7 +69,7 @@ export default function CardSurvey({
   };
 
   return (
-    <Link href="/#">
+    <Link href={`/app/surveys/${id}/dashboard/${type}`}>
       <Card className="group hover:border p-3 hover:border-primary hover:scale-105">
         <CardHeader className="p-1">
           <div className="flex justify-between flex-row">

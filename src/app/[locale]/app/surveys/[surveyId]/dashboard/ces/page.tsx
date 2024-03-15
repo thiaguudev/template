@@ -2,6 +2,8 @@
 
 import { AreaChart, DonutChart, Card } from "@tremor/react";
 
+import CardChart from "@/components/charts/card-chart";
+
 const chartdata = [
   {
     date: "Jan 22",
@@ -77,33 +79,25 @@ const chartdata = [
   },
 ];
 
-const dataFormatter = (number: any) =>
-  `$${Intl.NumberFormat("us").format(number).toString()}`;
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
-
 const data = [
   {
-    name: "Promoters",
-    value: "1576",
+    name: "Low effort",
+    value: "1579",
     change: "+6.1%",
     changeType: "positive",
   },
   {
-    name: "Neutrals",
+    name: "Medium effort",
     value: "235",
     change: "+19.2%",
     changeType: "positive",
   },
   {
-    name: "Detractors",
+    name: "High effort",
     value: "21",
     change: "-1.2%",
     changeType: "negative",
   },
-
   {
     name: "Interactions",
     value: "538",
@@ -114,44 +108,25 @@ const data = [
 
 const sales = [
   {
-    name: "Promoters",
+    name: "low effort",
     sales: 240,
   },
   {
-    name: "Neutrals",
+    name: "medium effort",
     sales: 190,
   },
   {
-    name: "Detractors",
+    name: "high effort",
     sales: 139,
   },
 ];
 
-export default function Example() {
+export default function DashboardPage() {
   return (
     <div className="">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 p-5">
         {data.map((item) => (
-          <Card key={item.name}>
-            <p className="flex items-start justify-between">
-              <span className="text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                {item.value}
-              </span>
-              <span
-                className={classNames(
-                  item.changeType === "positive"
-                    ? "bg-emerald-500"
-                    : "bg-red-500",
-                  "rounded text-white px-2 py-1 text-tremor-default font-medium"
-                )}
-              >
-                {item.change}
-              </span>
-            </p>
-            <p className="mt-1 text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-              {item.name}
-            </p>
-          </Card>
+          <CardChart key={item.name} {...item} />
         ))}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-5">
