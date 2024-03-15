@@ -139,7 +139,7 @@ export default function DashboardPage() {
         <AreaChart
           data={chartdata}
           index="date"
-          categories={["low effort", "medium effort", "high effort"]}
+          categories={["Low effort", "Medium effort", "High effort"]}
           colors={["emerald-300", "yellow-300", "red-300"]}
         />
         <DonutChart
