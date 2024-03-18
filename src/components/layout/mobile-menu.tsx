@@ -1,7 +1,7 @@
 "use client";
 
+import { Link } from "@/navigation";
 import { useState, useRef, useEffect } from "react";
-import Link from "next/link";
 
 export default function MobileMenu() {
   const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false);
