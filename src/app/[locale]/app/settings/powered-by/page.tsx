@@ -1,3 +1,5 @@
+import Page from "@/components/shared/page";
+
 export default function PoweredBySettings() {
-  return <div>PoweredBySettings</div>;
+  return <Page>PoweredBySettings</Page>;
 }

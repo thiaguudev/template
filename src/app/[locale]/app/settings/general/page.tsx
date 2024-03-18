@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
+import Page from "@/components/shared/page";
 
 export default function GeneralSettings() {
   const { toast } = useToast();
@@ -35,7 +36,7 @@ export default function GeneralSettings() {
   };
 
   return (
-    <div className="p-5">
+    <Page>
       <div className="flex flex-col text-center md:text-start">
         <h1 className="text-2xl mb-3 text-primary font-black">
           General Settings
@@ -98,6 +99,6 @@ export default function GeneralSettings() {
           </form>
         </Form>
       </div>
-    </div>
+    </Page>
   );
 }

@@ -1,3 +1,5 @@
+import Page from "@/components/shared/page";
+
 export default function BillingSettings() {
-  return <div>BillingSettings</div>;
+  return <Page>BillingSettings</Page>;
 }

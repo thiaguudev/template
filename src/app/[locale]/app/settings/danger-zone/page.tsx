@@ -1,5 +1,6 @@
 "use client";
 
+import Page from "@/components/shared/page";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -47,7 +48,7 @@ export default function DangerZoneSettings() {
   };
 
   return (
-    <div className="p-5">
+    <Page>
       <div className="flex flex-col text-center md:text-start">
         <h1 className="text-2xl mb-3 text-primary font-black">Danger Zone</h1>
         <p className="text-muted-foreground">Manage dangerous settings.</p>
@@ -60,6 +61,6 @@ export default function DangerZoneSettings() {
           widgets will be deleted permanently.
         </span>
       </div>
-    </div>
+    </Page>
   );
 }

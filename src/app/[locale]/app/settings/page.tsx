@@ -1,20 +1,19 @@
 "use client";
 
 import {
-  Building3,
   Danger,
   DollarCircle,
   NotificationBing,
   People,
   Profile2User,
-  Security,
 } from "iconsax-react";
 
 import CardSettings from "@/components/card-settings";
+import Page from "@/components/shared/page";
 
 export default function Layout() {
   return (
-    <div className="p-5">
+    <Page>
       <div className="flex flex-col text-center md:text-start">
         <h1 className="text-2xl mb-3 text-primary font-black">Settings</h1>
         <p className="text-muted-foreground">
@@ -57,6 +56,6 @@ export default function Layout() {
           icon={Danger}
         />
       </div>
-    </div>
+    </Page>
   );
 }

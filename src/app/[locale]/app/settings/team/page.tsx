@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import Page from "@/components/shared/page";
 
 const teamMembers = [
   {
@@ -103,7 +104,7 @@ export default function TeamSettings() {
   };
 
   return (
-    <div className="p-5">
+    <Page>
       <div className="flex flex-col text-center md:text-start">
         <h1 className="text-2xl mb-3 text-primary font-black">Team Settings</h1>
         <p className="text-muted-foreground">Manage your seats for team.</p>
@@ -120,6 +121,6 @@ export default function TeamSettings() {
           ))}
         </div>
       </div>
-    </div>
+    </Page>
   );
 }

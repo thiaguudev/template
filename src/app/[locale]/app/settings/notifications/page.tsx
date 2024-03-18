@@ -1,3 +1,5 @@
+import Page from "@/components/shared/page";
+
 export default function NotificationsSettings() {
-  return <div>NotificationsSettings</div>;
+  return <Page>NotificationsSettings</Page>;
 }

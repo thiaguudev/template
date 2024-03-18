@@ -2,8 +2,8 @@
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import z from "zod";
+import { zodResolver as resolver } from "@hookform/resolvers/zod";
 
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -15,9 +15,17 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Form } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "@/navigation";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Button } from "./ui/button";
 
 type DialogSurveyProps = {
   open: boolean;
@@ -29,21 +37,24 @@ export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
   const router = useRouter();
 
   const schema = z.object({
-    title: z.string(),
+    title: z.string().min(8),
+    type: z.string().min(1),
   });
 
-  const form = useForm<z.infer<typeof schema>>();
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: resolver(schema),
+  });
 
   const handleSubmit: SubmitHandler<z.infer<typeof schema>> = async (d) => {
     const surveyId = "x12463";
 
     toast({
       title: "Successfully to create a survey",
-      description: "",
-      variant: "default",
+      description: JSON.stringify(d),
+      variant: "success",
     });
 
-    router.push(`/surveys/${surveyId}`);
+    router.push(`/app/surveys/${surveyId}`);
   };
 
   return (
@@ -63,7 +74,52 @@ export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
                 <Input id="title" {...form.register("title")} />
               </div>
             </div>
-            <DialogFooter className="sm:flex flex-col-reverse gap-1">
+            <FormField
+              name="type"
+              control={form.control}
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>
+                      What kind of feedback would you like to get?
+                    </FormLabel>
+                    <FormControl>
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className="flex flex-col space-y-1"
+                      >
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="nps" />
+                          </FormControl>
+                          <FormLabel className="font-normal">NPS</FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="ces" />
+                          </FormControl>
+                          <FormLabel className="font-normal">CES</FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="csat" />
+                          </FormControl>
+                          <FormLabel className="font-normal">CSAT</FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="custom" />
+                          </FormControl>
+                          <FormLabel className="font-normal">Custom</FormLabel>
+                        </FormItem>
+                      </RadioGroup>
+                    </FormControl>
+                  </FormItem>
+                );
+              }}
+            />
+            <DialogFooter className="sm:flex flex-col-reverse gap-1 mt-3">
               <Button type="submit">Create Survey</Button>
               <DialogClose asChild>
                 <Button type="button" variant="secondary">
