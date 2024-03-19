@@ -53,9 +53,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
         </AnimatePresence>
 
         <div className="flex">
-          <div className="hidden md:block">
-            <Sidebar />
-          </div>
+          <div className="hidden md:block">{/* <Sidebar /> */}</div>
 
           <div className="flex grow flex-col">
             <div className="w-full max-w-[1440px] mx-auto">
