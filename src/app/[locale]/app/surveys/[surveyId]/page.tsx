@@ -29,7 +29,7 @@ export default function Survey({ params }: SurveyProps) {
     thanksMessage: z.string(),
     leftLabel: z.string(),
     rightLabel: z.string(),
-    timeToShow: z.number(),
+    timeToShow: z.string(),
     showSurveyBranding: z.boolean(),
     showWelcomeMessage: z.boolean(),
     isMobile: z.boolean(),

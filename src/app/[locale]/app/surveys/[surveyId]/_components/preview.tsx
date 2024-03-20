@@ -19,7 +19,12 @@ export function Preview({ screen }: PreviewProps) {
 
   const getScreen = () => {
     if (
-      ["question-customization", "design", "customize-labels"].includes(screen)
+      [
+        "question-customization",
+        "design",
+        "customize-labels",
+        "remove-survey-branding",
+      ].includes(screen)
     ) {
       return <SurveyPage mobile={mobile} />;
     } else if (screen === "welcome-page") {

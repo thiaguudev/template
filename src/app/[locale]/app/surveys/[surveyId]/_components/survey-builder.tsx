@@ -7,7 +7,8 @@ export default function SurveyBuilder() {
   const [screen, setScreen] = useState<string>("question-customization");
 
   const handleSetScreen = (currentScreen: string) => {
-    if (currentScreen) setScreen(currentScreen);
+    if (currentScreen && !currentScreen.startsWith("none"))
+      setScreen(currentScreen);
   };
 
   return (

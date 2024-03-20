@@ -1,3 +1,4 @@
+// 469 lines before refactor
 import { useFormContext } from "react-hook-form";
 import {
   MessageCircleMore,
@@ -25,9 +26,10 @@ import {
 } from "@/components/ui/accordion";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
+import { Input as ColorPicker } from "@/components/ui/input";
+import Input from "./forms/input";
+import Textarea from "./forms/textarea";
+import Switch from "./forms/switch";
 
 type SettingsProps = {
   onChangeScreen: (value: string) => void;
@@ -56,23 +58,10 @@ export function Settings({ onChangeScreen }: SettingsProps) {
             </div>
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-3">
-            <FormField
+            <Textarea
               name="question"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Question</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        className="w-full"
-                        placeholder="How likely are you to recommend Hem & Stitch to a friend?"
-                        {...field}
-                      />
-                    </FormControl>
-                  </FormItem>
-                );
-              }}
+              label="Question"
+              placeholder="How likely are you to recommend Hem & Stitch to a friend?"
             />
           </AccordionContent>
         </AccordionItem>
@@ -89,7 +78,7 @@ export function Settings({ onChangeScreen }: SettingsProps) {
             <div className="flex items-center justify-between">
               <div className="flex flex-col gap-1">
                 <Label htmlFor="hs-color-input">Primary Color</Label>
-                <Input
+                <ColorPicker
                   type="color"
                   className="p-1 h-10 w-14 block bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700"
                   id="hs-color-input"
@@ -99,7 +88,7 @@ export function Settings({ onChangeScreen }: SettingsProps) {
               </div>
               <div className="flex flex-col gap-1">
                 <Label htmlFor="hs-color-input">Background Color</Label>
-                <Input
+                <ColorPicker
                   type="color"
                   className="p-1 h-10 w-14 block bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700"
                   id="hs-color-input"
@@ -228,46 +217,16 @@ export function Settings({ onChangeScreen }: SettingsProps) {
             </div>
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-3">
-            <FormField
+            <Switch
               name="showWelcomeMessage"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem className="flex flex-row items-center gap-3 p-3 border border-black rounded-xl space-y-0">
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-0.5">
-                      <FormLabel>Show Welcome Message</FormLabel>
-                      <FormDescription>
-                        Remove the branding of survey apoli. Necessary Pro Plan
-                        or superior.
-                      </FormDescription>
-                    </div>
-                  </FormItem>
-                );
-              }}
+              label="Show Welcome Message"
+              description="Remove the branding of survey apoli. Necessary Pro Plan
+                        or superior."
             />
-            <FormField
+            <Textarea
               name="welcomeMessage"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Welcome message</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        className="w-full"
-                        placeholder="Can you help us with a question?"
-                        {...field}
-                      />
-                    </FormControl>
-                  </FormItem>
-                );
-              }}
+              label="Welcome message"
+              placeholder="Can you help us with a question?"
             />
           </AccordionContent>
         </AccordionItem>
@@ -278,28 +237,11 @@ export function Settings({ onChangeScreen }: SettingsProps) {
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <FormField
+            <Switch
               name="showSurveyBranding"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem className="flex flex-row items-center gap-3 p-3 border border-black rounded-xl space-y-0">
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-0.5">
-                      <FormLabel>Show Apoli branding</FormLabel>
-                      <FormDescription>
-                        Remove the branding of survey apoli. Necessary Pro Plan
-                        or superior.
-                      </FormDescription>
-                    </div>
-                  </FormItem>
-                );
-              }}
+              label="Show Apoli branding"
+              description="Remove the branding of survey apoli. Necessary Pro Plan
+              or superior."
             />
           </AccordionContent>
         </AccordionItem>
@@ -311,106 +253,43 @@ export function Settings({ onChangeScreen }: SettingsProps) {
             </div>
           </AccordionTrigger>
           <AccordionContent className="grid grid-cols-2 gap-3">
-            <FormField
+            <Input
               name="leftLabel"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Left Label</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="Not Likely" />
-                    </FormControl>
-                  </FormItem>
-                );
-              }}
+              label="Left Label"
+              placeholder="Not Likely"
             />
-            <FormField
+            <Input
               name="rightLabel"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Right Label</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="Very Likely" />
-                    </FormControl>
-                  </FormItem>
-                );
-              }}
+              label="Right Label"
+              placeholder="Very Likely"
             />
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="advanced">
+        <AccordionItem value="none:advanced">
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
             <div className="flex items-center gap-2">
               <Settings2 color="#cecece" /> Advanced
             </div>
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-3">
-            <FormField
+            <Switch
               name="isMobile"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem className="flex flex-row items-center gap-3 p-3 border border-black rounded-xl space-y-0">
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-0.5">
-                      <FormLabel>Show survey on mobiles</FormLabel>
-                      <FormDescription>
-                        Remove the branding of survey apoli. Necessary Pro Plan
-                        or superior.
-                      </FormDescription>
-                    </div>
-                  </FormItem>
-                );
-              }}
+              label="Show survey on mobiles"
+              description="Remove the branding of survey apoli. Necessary Pro Plan
+              or superior."
             />
-            <FormField
+            <Switch
               name="skipComment"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem className="flex flex-row items-center gap-3 p-3 border border-black rounded-xl space-y-0">
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-0.5">
-                      <FormLabel>Skip comment</FormLabel>
-                      <FormDescription>
-                        Remove the branding of survey apoli. Necessary Pro Plan
-                        or superior.
-                      </FormDescription>
-                    </div>
-                  </FormItem>
-                );
-              }}
+              label="Skip comment"
+              description="Remove the branding of survey apoli. Necessary Pro Plan
+              or superior."
             />
-            <FormField
+            <Input
               name="timeToShow"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Time to show</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="2" />
-                    </FormControl>
-                    <FormDescription>
-                      Time to show a survey for your user (in seconds)
-                    </FormDescription>
-                  </FormItem>
-                );
-              }}
+              label="Time to show"
+              placeholder="2"
+              description="Time to show a survey for your user (in seconds)"
             />
           </AccordionContent>
         </AccordionItem>
@@ -422,40 +301,11 @@ export function Settings({ onChangeScreen }: SettingsProps) {
             </div>
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-3">
-            <FormField
-              name="thanksTitle"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Page title</FormLabel>
-                    <FormControl>
-                      <Input className="w-full" {...field} />
-                    </FormControl>
-                  </FormItem>
-                );
-              }}
-            />
-            <FormField
+            <Input name="thanksTitle" label="Page title" placeholder="" />
+            <Textarea
               name="thanksMessage"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Message</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        className="w-full"
-                        placeholder="How likely are you to recommend Hem & Stitch to a friend?"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Time to show a survey for your user (in seconds)
-                    </FormDescription>
-                  </FormItem>
-                );
-              }}
+              label="Message"
+              placeholder="Thank you for help us!"
             />
           </AccordionContent>
         </AccordionItem>

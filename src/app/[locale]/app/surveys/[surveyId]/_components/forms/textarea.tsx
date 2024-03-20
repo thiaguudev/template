@@ -7,7 +7,7 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { Input as InputField } from "@/components/ui/input";
+import { Textarea as TextareaField } from "@/components/ui/textarea";
 
 type InputProps = {
   label: string;
@@ -16,7 +16,7 @@ type InputProps = {
   description?: string;
 };
 
-export default function Input({
+export default function Textarea({
   name,
   label,
   placeholder,
@@ -33,7 +33,7 @@ export default function Input({
           <FormItem>
             <FormLabel>{label}</FormLabel>
             <FormControl>
-              <InputField
+              <TextareaField
                 className="w-full"
                 placeholder={placeholder}
                 {...field}

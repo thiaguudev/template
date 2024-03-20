@@ -10,6 +10,7 @@ export default function SurveyPage({ mobile }: any) {
 
   const leftLabel = useWatch({ name: "leftLabel", control });
   const rightLabel = useWatch({ name: "rightLabel", control });
+  const showSurveyBranding = useWatch({ name: "showSurveyBranding", control });
 
   return (
     <>
@@ -34,7 +35,9 @@ export default function SurveyPage({ mobile }: any) {
         <span className="text-sm">{rightLabel}</span>
       </div>
 
-      <div className="p-3 text-right">Powered By Survey Apoli</div>
+      {showSurveyBranding && (
+        <div className="p-3 text-right">Powered By Survey Apoli</div>
+      )}
     </>
   );
 }
