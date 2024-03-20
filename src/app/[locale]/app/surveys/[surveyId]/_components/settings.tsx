@@ -1,3 +1,14 @@
+import { useFormContext } from "react-hook-form";
+import {
+  MessageCircleMore,
+  Paintbrush2,
+  Hand,
+  Settings2,
+  Star,
+  List,
+  PartyPopper,
+} from "lucide-react";
+
 import {
   FormControl,
   FormDescription,
@@ -16,27 +27,27 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  MessageCircleMore,
-  Paintbrush2,
-  Hand,
-  Settings2,
-  Star,
-  List,
-} from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { useFormContext } from "react-hook-form";
 
-export function Settings() {
+type SettingsProps = {
+  onChangeScreen: (value: string) => void;
+};
+
+export function Settings({ onChangeScreen }: SettingsProps) {
   const { control, register, watch } = useFormContext();
 
   const bgColor = watch("buttonBackgroundColor");
 
   return (
     <div className="flex flex-1 flex-col gap-2">
-      <Accordion type="single" collapsible className="w-full">
+      <Accordion
+        type="single"
+        collapsible
+        className="w-full"
+        onValueChange={onChangeScreen}
+      >
         <AccordionItem
-          value="item-1"
+          value="question-customization"
           className="flex hover:no-underline justify-start gap-3 flex-col"
         >
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
@@ -66,7 +77,7 @@ export function Settings() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem
-          value="item-2"
+          value="design"
           className="flex hover:no-underline justify-start gap-3 flex-col"
         >
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
@@ -210,7 +221,7 @@ export function Settings() {
             />
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="item-3">
+        <AccordionItem value="welcome-page">
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
             <div className="flex items-center gap-2">
               <Hand color="#aace10" /> Welcome page
@@ -260,7 +271,7 @@ export function Settings() {
             />
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="item-4">
+        <AccordionItem value="remove-survey-branding">
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
             <div className="flex items-center gap-2">
               <Star color="green" /> Remove Survey branding
@@ -293,7 +304,7 @@ export function Settings() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-5">
+        <AccordionItem value="customize-labels">
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
             <div className="flex items-center gap-2">
               <List color="#a1a224" /> Customize labels
@@ -331,7 +342,7 @@ export function Settings() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-6">
+        <AccordionItem value="advanced">
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
             <div className="flex items-center gap-2">
               <Settings2 color="#cecece" /> Advanced
@@ -393,6 +404,51 @@ export function Settings() {
                     <FormLabel>Time to show</FormLabel>
                     <FormControl>
                       <Input {...field} placeholder="2" />
+                    </FormControl>
+                    <FormDescription>
+                      Time to show a survey for your user (in seconds)
+                    </FormDescription>
+                  </FormItem>
+                );
+              }}
+            />
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="thank-you-page">
+          <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
+            <div className="flex items-center gap-2">
+              <PartyPopper color="#DDCCFF" /> Thank you page
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-3">
+            <FormField
+              name="thanksTitle"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Page title</FormLabel>
+                    <FormControl>
+                      <Input className="w-full" {...field} />
+                    </FormControl>
+                  </FormItem>
+                );
+              }}
+            />
+            <FormField
+              name="thanksMessage"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Message</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        className="w-full"
+                        placeholder="How likely are you to recommend Hem & Stitch to a friend?"
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>
                       Time to show a survey for your user (in seconds)

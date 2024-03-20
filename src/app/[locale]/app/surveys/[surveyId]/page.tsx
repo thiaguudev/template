@@ -7,8 +7,8 @@ import { zodResolver as resolver } from "@hookform/resolvers/zod";
 import Page from "@/components/shared/page";
 import { Form } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
-import { Preview } from "./_components/preview";
-import { Settings } from "./_components/settings";
+import SurveyBuilder from "./_components/survey-builder";
+import { useEffect } from "react";
 
 type SurveyProps = {
   params: {
@@ -35,11 +35,13 @@ export default function Survey({ params }: SurveyProps) {
     isMobile: z.boolean(),
     skipComment: z.boolean(),
     type: z.enum(["nps", "ces", "csat", "custom"]),
+    thanksTitle: z.string(),
   });
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: resolver(schema),
     defaultValues: {
+      type: "nps",
       question: "How likely are you to recommend Survey Apoli to a friend?",
       buttonTextColor: "#deceee",
       buttonBackgroundColor: "#deceee",
@@ -49,13 +51,12 @@ export default function Survey({ params }: SurveyProps) {
       timeToShow: 2,
       isMobile: true,
       skipComment: false,
-      // hasFeedback: true,
       buttonShape: "rounded-xl",
       welcomeMessage: "Can you help us with a question?",
+      thanksTitle: "Thank you 🙏",
       thanksMessage: "Thank you for help us.",
       showSurveyBranding: true,
       showWelcomeMessage: true,
-      type: "nps",
     },
   });
 
@@ -79,8 +80,7 @@ export default function Survey({ params }: SurveyProps) {
               onSubmit={form.handleSubmit(handleSubmit)}
               className="flex gap-8 items-start"
             >
-              <Settings />
-              <Preview />
+              <SurveyBuilder />
             </form>
           </div>
         </Form>

@@ -1,33 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
-import Image from "next/image";
-import {
-  ArrowRight2,
-  Flash,
-  Gift,
-  Messages1,
-  Setting2,
-  Star1,
-} from "iconsax-react";
+import { Flash, Gift, Messages1, People, Setting2, Star1 } from "iconsax-react";
+import { HelpCircle, MessageSquareMore } from "lucide-react";
 
-import { useCentralStore } from "@/app/store";
-import { usePathname } from "@/navigation";
 import useMediaQuery from "@/hooks/use-media-query";
 import MenuLink from "../menu-link";
-
 import { Button } from "../ui/button";
 import UserNav from "../UserNav";
 import { ThemeSwitcherTabs } from "../ThemeSwitcher";
 
 function Sidebar() {
   const { isDesktop } = useMediaQuery();
-  const pathname = usePathname();
-  const { setIsSidebarOpen, isSidebarOpen } = useCentralStore();
-
-  // useEffect(() => {
-  //   if (!isSidebarOpen) setIsSidebarOpen(!isSidebarOpen);
-  // }, [pathname, isSidebarOpen, setIsSidebarOpen]);
 
   return (
     <div
@@ -37,7 +20,7 @@ function Sidebar() {
     >
       <div className="w-full h-full border-r">
         <div className="p-4 md:p-6 flex cursor-pointer group items-center gap-2">
-          <div className="h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-600 text-white">
+          <div className="h-10 outline outline-emerald-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-emerald-500 to-emerald-600 text-white">
             <Star1
               size={24}
               className="relative group-hover:scale-75 duration-200"
@@ -65,22 +48,21 @@ function Sidebar() {
               Earn $50
             </button>
 
+            <MenuLink href="/app/surveys" title="Surveys" icon={Messages1} />
+
+            <MenuLink href="/app/settings/team" title="Team" icon={People} />
+
             <MenuLink
-              href="/app/surveys"
-              title="Surveys"
-              active={pathname === "/app/surveys"}
-              icon={Messages1}
+              href="/app/feedback"
+              title="Feedback"
+              icon={MessageSquareMore}
             />
+            <MenuLink href="/app/help" title="Help" icon={HelpCircle} />
           </div>
 
           <div>
             <div className="text-gray-500 text-xs font-medium md:px-2">
-              <MenuLink
-                href="/app/settings"
-                title="Settings"
-                active={pathname === "/app/settings"}
-                icon={Setting2}
-              />
+              <MenuLink href="/app/settings" title="Settings" icon={Setting2} />
 
               <ThemeSwitcherTabs />
 

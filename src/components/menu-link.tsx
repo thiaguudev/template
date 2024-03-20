@@ -1,20 +1,17 @@
 import { FC } from "react";
 
-import { Link } from "@/navigation";
+import { Link, usePathname } from "@/navigation";
 
 type MenuLinkProps = {
   href: string;
-  active: boolean;
   icon: FC<any>;
   title: string;
 };
 
-export default function MenuLink({
-  href,
-  active,
-  icon: Icon,
-  title,
-}: MenuLinkProps) {
+export default function MenuLink({ href, icon: Icon, title }: MenuLinkProps) {
+  const pathname = usePathname();
+  const active = pathname === href;
+
   return (
     <Link
       href={href}
