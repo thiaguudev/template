@@ -13,14 +13,11 @@ import Page from "@/components/shared/page";
 
 export default function Layout() {
   return (
-    <Page>
-      <div className="flex flex-col text-center md:text-start">
-        <h1 className="text-2xl mb-3 text-primary font-black">Settings</h1>
-        <p className="text-muted-foreground">
-          Manage your account settings and preferences.
-        </p>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+    <Page
+      title="Settings"
+      subtitle="Manage your account settings and preferences."
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <CardSettings
           href="/app/settings/general"
           title="Personal Info"

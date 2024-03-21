@@ -104,22 +104,16 @@ export default function TeamSettings() {
   };
 
   return (
-    <Page>
-      <div className="flex flex-col text-center md:text-start">
-        <h1 className="text-2xl mb-3 text-primary font-black">Team Settings</h1>
-        <p className="text-muted-foreground">Manage your seats for team.</p>
-      </div>
-      <div className="mt-5">
-        <div className="flex flex-col gap-3">
-          {teamMembers.map((member) => (
-            <CardUser
-              key={member.id}
-              id={member.id}
-              name={member.name}
-              email={member.email}
-            />
-          ))}
-        </div>
+    <Page title="Team Settings" subtitle="Manage your seats for team.">
+      <div className="flex flex-col gap-3">
+        {teamMembers.map((member) => (
+          <CardUser
+            key={member.id}
+            id={member.id}
+            name={member.name}
+            email={member.email}
+          />
+        ))}
       </div>
     </Page>
   );

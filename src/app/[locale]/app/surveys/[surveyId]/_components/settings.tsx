@@ -1,5 +1,5 @@
-// 469 lines before refactor
-import { useFormContext } from "react-hook-form";
+import { ReactNode } from "react";
+import { useFormContext, useWatch } from "react-hook-form";
 import {
   MessageCircleMore,
   Paintbrush2,
@@ -10,13 +10,6 @@ import {
   PartyPopper,
 } from "lucide-react";
 
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -25,20 +18,35 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input as ColorPicker } from "@/components/ui/input";
+import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
+import { RadioGroupItem } from "@/components/ui/radio-group";
 import Input from "./forms/input";
 import Textarea from "./forms/textarea";
-import Switch from "./forms/switch";
+import RadioGroup from "./forms/radio-group";
+import Checkbox from "./forms/checkbox";
 
 type SettingsProps = {
   onChangeScreen: (value: string) => void;
 };
 
-export function Settings({ onChangeScreen }: SettingsProps) {
-  const { control, register, watch } = useFormContext();
+type AccordionTitleProps = {
+  icon: ReactNode;
+  title: string;
+};
 
-  const bgColor = watch("buttonBackgroundColor");
+function AccordionTitle({ icon, title }: AccordionTitleProps) {
+  return (
+    <div className="flex items-center gap-2">
+      {icon} {title}
+    </div>
+  );
+}
+
+export function Settings({ onChangeScreen }: SettingsProps) {
+  const { control, register } = useFormContext();
+
+  const backgroundColor = useWatch({ name: "buttonBackgroundColor", control });
 
   return (
     <div className="flex flex-1 flex-col gap-2">
@@ -53,9 +61,10 @@ export function Settings({ onChangeScreen }: SettingsProps) {
           className="flex hover:no-underline justify-start gap-3 flex-col"
         >
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
-            <div className="flex items-center gap-2">
-              <MessageCircleMore color="#feaaaa" /> Question Customization
-            </div>
+            <AccordionTitle
+              title="Question Customization"
+              icon={<MessageCircleMore color="#feaaaa" />}
+            />
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-3">
             <Textarea
@@ -70,9 +79,10 @@ export function Settings({ onChangeScreen }: SettingsProps) {
           className="flex hover:no-underline justify-start gap-3 flex-col"
         >
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
-            <div className="flex items-center gap-2">
-              <Paintbrush2 color="#deceee" /> Design
-            </div>
+            <AccordionTitle
+              title="Design"
+              icon={<Paintbrush2 color="#deceee" />}
+            />
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-3">
             <div className="flex items-center justify-between">
@@ -98,113 +108,94 @@ export function Settings({ onChangeScreen }: SettingsProps) {
               </div>
             </div>
 
-            <FormField
-              control={control}
-              name="buttonStyle"
-              render={({ field }) => {
+            <RadioGroup
+              name="buttonShape"
+              label="Button Shape"
+              className="flex items-center"
+              render={() => {
                 return (
-                  <FormItem>
-                    <FormLabel>Button Style</FormLabel>
-                    <FormControl>
-                      <RadioGroup
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                        className="flex items-center"
-                      >
-                        <FormItem className="p-2 rounded-xl cursor-pointer border border-primary w-14 h-14">
-                          <FormControl>
-                            <RadioGroupItem value="filled" className="hidden" />
-                          </FormControl>
-                          <FormLabel className="font-normal rounded-xl cursor-pointer">
-                            <div
-                              className="p-3 text-white rounded-xl"
-                              style={{ backgroundColor: bgColor }}
-                            >
-                              10
-                            </div>
-                          </FormLabel>
-                        </FormItem>
-                        <FormItem className="p-2 rounded-xl cursor-pointer border border-primary w-14 h-14">
-                          <FormControl>
-                            <RadioGroupItem
-                              value="outline"
-                              className="hidden"
-                            />
-                          </FormControl>
-                          <FormLabel className="font-normal rounded-xl cursor-pointer">
-                            <div
-                              className="p-3 border rounded-xl"
-                              style={{ borderColor: bgColor, color: bgColor }}
-                            >
-                              10
-                            </div>
-                          </FormLabel>
-                        </FormItem>
-                      </RadioGroup>
-                    </FormControl>
-                  </FormItem>
+                  <>
+                    <FormItem className="p-2 rounded-xl cursor-pointer border border-primary w-14 h-14 flex items-center justify-center space-y-0">
+                      <FormControl>
+                        <RadioGroupItem
+                          value="rounded-none"
+                          className="hidden"
+                        />
+                      </FormControl>
+                      <FormLabel className="font-normal rounded-xl cursor-pointer">
+                        <div
+                          className="w-7 h-7 rounded-none"
+                          style={{ backgroundColor }}
+                        />
+                      </FormLabel>
+                    </FormItem>
+                    <FormItem className="p-2 rounded-xl cursor-pointer border border-primary w-14 h-14 flex items-center justify-center space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="rounded-xl" className="hidden" />
+                      </FormControl>
+                      <FormLabel className="font-normal rounded-xl cursor-pointer">
+                        <div
+                          className="w-7 h-7 rounded-xl"
+                          style={{ backgroundColor }}
+                        />
+                      </FormLabel>
+                    </FormItem>
+                    <FormItem className="p-2 rounded-xl cursor-pointer border border-primary w-14 h-14 flex items-center justify-center space-y-0">
+                      <FormControl>
+                        <RadioGroupItem
+                          value="rounded-full"
+                          className="hidden"
+                        />
+                      </FormControl>
+                      <FormLabel className="font-normal rounded-xl cursor-pointer flex justify-center items-center">
+                        <div
+                          className="w-7 h-7 rounded-full"
+                          style={{ backgroundColor }}
+                        />
+                      </FormLabel>
+                    </FormItem>
+                  </>
                 );
               }}
             />
 
-            <FormField
-              control={control}
-              name="buttonShape"
-              render={({ field }) => {
+            <RadioGroup
+              name="buttonStyle"
+              label="Button Style"
+              className="flex items-center"
+              render={() => {
                 return (
-                  <FormItem>
-                    <FormLabel>Button Shape</FormLabel>
-                    <FormControl>
-                      <RadioGroup
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                        className="flex items-center"
-                      >
-                        <FormItem className="p-2 rounded-xl cursor-pointer border border-primary w-14 h-14 flex items-center justify-center space-y-0">
-                          <FormControl>
-                            <RadioGroupItem
-                              value="rounded-none"
-                              className="hidden"
-                            />
-                          </FormControl>
-                          <FormLabel className="font-normal rounded-xl cursor-pointer">
-                            <div
-                              className="w-7 h-7 rounded-none"
-                              style={{ backgroundColor: bgColor }}
-                            />
-                          </FormLabel>
-                        </FormItem>
-                        <FormItem className="p-2 rounded-xl cursor-pointer border border-primary w-14 h-14 flex items-center justify-center space-y-0">
-                          <FormControl>
-                            <RadioGroupItem
-                              value="rounded-xl"
-                              className="hidden"
-                            />
-                          </FormControl>
-                          <FormLabel className="font-normal rounded-xl cursor-pointer">
-                            <div
-                              className="w-7 h-7 rounded-xl"
-                              style={{ backgroundColor: bgColor }}
-                            />
-                          </FormLabel>
-                        </FormItem>
-                        <FormItem className="p-2 rounded-xl cursor-pointer border border-primary w-14 h-14 flex items-center justify-center space-y-0">
-                          <FormControl>
-                            <RadioGroupItem
-                              value="rounded-full"
-                              className="hidden"
-                            />
-                          </FormControl>
-                          <FormLabel className="font-normal rounded-xl cursor-pointer flex justify-center items-center">
-                            <div
-                              className="w-7 h-7 rounded-full"
-                              style={{ backgroundColor: bgColor }}
-                            />
-                          </FormLabel>
-                        </FormItem>
-                      </RadioGroup>
-                    </FormControl>
-                  </FormItem>
+                  <>
+                    <FormItem className="p-2 rounded-xl cursor-pointer border border-primary w-14 h-14">
+                      <FormControl>
+                        <RadioGroupItem value="filled" className="hidden" />
+                      </FormControl>
+                      <FormLabel className="font-normal rounded-xl cursor-pointer">
+                        <div
+                          className="p-3 text-white rounded-xl"
+                          style={{ backgroundColor: backgroundColor }}
+                        >
+                          10
+                        </div>
+                      </FormLabel>
+                    </FormItem>
+                    <FormItem className="p-2 rounded-xl cursor-pointer border border-primary w-14 h-14">
+                      <FormControl>
+                        <RadioGroupItem value="outline" className="hidden" />
+                      </FormControl>
+                      <FormLabel className="font-normal rounded-xl cursor-pointer">
+                        <div
+                          className="p-3 border rounded-xl"
+                          style={{
+                            borderColor: backgroundColor,
+                            color: backgroundColor,
+                          }}
+                        >
+                          10
+                        </div>
+                      </FormLabel>
+                    </FormItem>
+                  </>
                 );
               }}
             />
@@ -212,12 +203,13 @@ export function Settings({ onChangeScreen }: SettingsProps) {
         </AccordionItem>
         <AccordionItem value="welcome-page">
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
-            <div className="flex items-center gap-2">
-              <Hand color="#aace10" /> Welcome page
-            </div>
+            <AccordionTitle
+              title="Welcome page"
+              icon={<Hand color="#aace10" />}
+            />
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-3">
-            <Switch
+            <Checkbox
               name="showWelcomeMessage"
               label="Show Welcome Message"
               description="Remove the branding of survey apoli. Necessary Pro Plan
@@ -232,12 +224,13 @@ export function Settings({ onChangeScreen }: SettingsProps) {
         </AccordionItem>
         <AccordionItem value="remove-survey-branding">
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
-            <div className="flex items-center gap-2">
-              <Star color="green" /> Remove Survey branding
-            </div>
+            <AccordionTitle
+              title="Remove Survey branding"
+              icon={<Star color="green" />}
+            />
           </AccordionTrigger>
           <AccordionContent>
-            <Switch
+            <Checkbox
               name="showSurveyBranding"
               label="Show Apoli branding"
               description="Remove the branding of survey apoli. Necessary Pro Plan
@@ -245,12 +238,12 @@ export function Settings({ onChangeScreen }: SettingsProps) {
             />
           </AccordionContent>
         </AccordionItem>
-
         <AccordionItem value="customize-labels">
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
-            <div className="flex items-center gap-2">
-              <List color="#a1a224" /> Customize labels
-            </div>
+            <AccordionTitle
+              title="Customize labels"
+              icon={<List color="#a1a224" />}
+            />
           </AccordionTrigger>
           <AccordionContent className="grid grid-cols-2 gap-3">
             <Input
@@ -258,6 +251,7 @@ export function Settings({ onChangeScreen }: SettingsProps) {
               label="Left Label"
               placeholder="Not Likely"
             />
+
             <Input
               name="rightLabel"
               label="Right Label"
@@ -268,18 +262,18 @@ export function Settings({ onChangeScreen }: SettingsProps) {
 
         <AccordionItem value="none:advanced">
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
-            <div className="flex items-center gap-2">
-              <Settings2 color="#cecece" /> Advanced
-            </div>
+            <AccordionTitle
+              title="Advanced"
+              icon={<Settings2 color="#cecece" />}
+            />
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-3">
-            <Switch
+            <Checkbox
               name="isMobile"
               label="Show survey on mobiles"
-              description="Remove the branding of survey apoli. Necessary Pro Plan
-              or superior."
+              description="Controls whether the survey should be shown on smartphones and tablets. The mobile experience has been specifically designed for touchscreens."
             />
-            <Switch
+            <Checkbox
               name="skipComment"
               label="Skip comment"
               description="Remove the branding of survey apoli. Necessary Pro Plan
@@ -296,9 +290,10 @@ export function Settings({ onChangeScreen }: SettingsProps) {
 
         <AccordionItem value="thank-you-page">
           <AccordionTrigger className="flex hover:no-underline justify-between gap-3 [&[data-state=open]>svg]:rotate-0 [&[data-state=open]]:opacity-70">
-            <div className="flex items-center gap-2">
-              <PartyPopper color="#DDCCFF" /> Thank you page
-            </div>
+            <AccordionTitle
+              title="Thank you page"
+              icon={<PartyPopper color="#DDCCFF" />}
+            />
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-3">
             <Input name="thanksTitle" label="Page title" placeholder="" />

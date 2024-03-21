@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/layout/sidebar";
+import { usePathname } from "@/navigation";
 
 type AppLayoutProps = {
   children: ReactNode;
@@ -17,6 +18,9 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const handleSidebarChange = (value: boolean) => {
     setIsSidebarOpen(value);
   };
+
+  const pathname = usePathname();
+  console.log("pathname", pathname);
 
   return (
     <>
@@ -54,7 +58,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
         <div className="flex">
           <div className="hidden md:block">
-            <Sidebar />
+            {!"/app/surveys/configure-survey".includes(pathname) && <Sidebar />}
           </div>
 
           <div className="flex grow flex-col">

@@ -36,7 +36,13 @@ export default function SurveyPage({ mobile }: any) {
       </div>
 
       {showSurveyBranding && (
-        <div className="p-3 text-right">Powered By Survey Apoli</div>
+        <a
+          className="p-1 text-xs ml-auto block text-right text-muted-foreground"
+          href="http://localhost:3000"
+          target="_blank"
+        >
+          Powered By Survey Apoli
+        </a>
       )}
     </>
   );

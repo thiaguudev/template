@@ -1,3 +1,4 @@
+import { subtle } from "crypto";
 import type { Config } from "tailwindcss"
 import colors from 'tailwindcss/colors';
 

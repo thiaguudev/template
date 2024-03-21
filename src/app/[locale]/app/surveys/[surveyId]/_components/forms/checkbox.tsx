@@ -7,11 +7,11 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { Switch as SwitchField } from "@/components/ui/switch";
+import { Checkbox as CheckboxField } from "@/components/ui/checkbox";
 
-type SwitchProps = { name: string; label: string; description?: string };
+type CheckboxProps = { name: string; label: string; description?: string };
 
-export default function Switch({ name, label, description }: SwitchProps) {
+export default function Checkbox({ name, label, description }: CheckboxProps) {
   const { control } = useFormContext();
 
   return (
@@ -22,7 +22,7 @@ export default function Switch({ name, label, description }: SwitchProps) {
         return (
           <FormItem className="flex flex-row items-center gap-3 p-3 rounded-xl space-y-0">
             <FormControl>
-              <SwitchField
+              <CheckboxField
                 checked={field.value}
                 onCheckedChange={field.onChange}
               />

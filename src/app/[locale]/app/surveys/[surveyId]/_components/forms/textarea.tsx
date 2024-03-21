@@ -1,13 +1,11 @@
-import { useFormContext } from "react-hook-form";
-
 import {
   FormControl,
   FormDescription,
-  FormField,
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
 import { Textarea as TextareaField } from "@/components/ui/textarea";
+import Field from "./field";
 
 type InputProps = {
   label: string;
@@ -22,12 +20,9 @@ export default function Textarea({
   placeholder,
   description,
 }: InputProps) {
-  const { control } = useFormContext();
-
   return (
-    <FormField
+    <Field
       name={name}
-      control={control}
       render={({ field }) => {
         return (
           <FormItem>

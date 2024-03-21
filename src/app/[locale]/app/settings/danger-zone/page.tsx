@@ -48,12 +48,7 @@ export default function DangerZoneSettings() {
   };
 
   return (
-    <Page>
-      <div className="flex flex-col text-center md:text-start">
-        <h1 className="text-2xl mb-3 text-primary font-black">Danger Zone</h1>
-        <p className="text-muted-foreground">Manage dangerous settings.</p>
-      </div>
-
+    <Page title="Danger Zone" subtitle="Manage dangerous settings.">
       <div className="mt-5">
         <AlertDialogDemo onConfirm={handleDelete} />
         <span className="ml-3 text-muted-foreground">

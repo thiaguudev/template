@@ -5,5 +5,5 @@ export default function WelcomePage({ mobile }: any) {
 
   const welcomeMessage = useWatch({ name: "welcomeMessage", control });
 
-  return <div>{welcomeMessage}</div>;
+  return <div className="text-center">{welcomeMessage}</div>;
 }
