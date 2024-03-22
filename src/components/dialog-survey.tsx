@@ -13,19 +13,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
+import { Button } from "@/components/ui/button";
 import { useRouter } from "@/navigation";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Button } from "./ui/button";
+import Input from "@/app/[locale]/app/surveys/[surveyId]/_components/forms/input";
 
 type DialogSurveyProps = {
   open: boolean;
@@ -37,8 +29,7 @@ export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
   const router = useRouter();
 
   const schema = z.object({
-    title: z.string().min(8),
-    type: z.string().min(1),
+    title: z.string(),
   });
 
   const form = useForm<z.infer<typeof schema>>({
@@ -68,57 +59,7 @@ export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)}>
-            <div className="grid gap-4 py-4">
-              <div className="grid w-full max-w-sm items-center gap-2">
-                <Label htmlFor="title">Survey name</Label>
-                <Input id="title" {...form.register("title")} />
-              </div>
-            </div>
-            <FormField
-              name="type"
-              control={form.control}
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>
-                      What kind of feedback would you like to get?
-                    </FormLabel>
-                    <FormControl>
-                      <RadioGroup
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                        className="flex flex-col space-y-1"
-                      >
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="nps" />
-                          </FormControl>
-                          <FormLabel className="font-normal">NPS</FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="ces" />
-                          </FormControl>
-                          <FormLabel className="font-normal">CES</FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="csat" />
-                          </FormControl>
-                          <FormLabel className="font-normal">CSAT</FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="custom" />
-                          </FormControl>
-                          <FormLabel className="font-normal">Custom</FormLabel>
-                        </FormItem>
-                      </RadioGroup>
-                    </FormControl>
-                  </FormItem>
-                );
-              }}
-            />
+            <Input name="title" label="Survey name" />
             <DialogFooter className="sm:flex flex-col-reverse gap-1 mt-3">
               <Button type="submit">Create Survey</Button>
               <DialogClose asChild>

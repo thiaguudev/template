@@ -3,10 +3,10 @@
 import { ReactNode, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { usePathname } from "@/navigation";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/layout/sidebar";
-import { usePathname } from "@/navigation";
 
 type AppLayoutProps = {
   children: ReactNode;
@@ -20,7 +20,6 @@ export default function AppLayout({ children }: AppLayoutProps) {
   };
 
   const pathname = usePathname();
-  console.log("pathname", pathname);
 
   return (
     <>
@@ -28,7 +27,8 @@ export default function AppLayout({ children }: AppLayoutProps) {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`${isSidebarOpen ? "overflow-hidden" : ""} h-screen`}
+        // className={`${isSidebarOpen ? "overflow-hidden" : ""} h-screen`}
+        className="h-screen"
       >
         <AnimatePresence>
           {isSidebarOpen && (
@@ -41,7 +41,6 @@ export default function AppLayout({ children }: AppLayoutProps) {
           )}
         </AnimatePresence>
 
-        {/* mobile sidebar */}
         <AnimatePresence>
           {isSidebarOpen && (
             <motion.div
