@@ -15,16 +15,14 @@ type CardSelectProps = {
 
 function CardSelect({ title, description, icon: Icon }: CardSelectProps) {
   return (
-    <Link href="">
-      <Card className="hover:outline p-3 hover:outline-primary max-h-36 h-full hover:outline-1 flex items-center justify-center">
-        <CardHeader className="flex items-center p-0">
+    <Link href={``}>
+      <Card className="hover:outline p-3 hover:outline-primary min-h-32 hover:outline-1 flex items-center">
+        <CardHeader className="flex flex-row items-center gap-3">
           <CardTitle className="flex flex-col items-center justify-center text-center gap-2 min-w-24">
             <Icon className="stroke-primary group-hover" />
-            <span className="text-xl">{title}</span>
+            <span>{title}</span>
           </CardTitle>
-          <CardDescription className="text-center">
-            {description}
-          </CardDescription>
+          <CardDescription>{description}</CardDescription>
         </CardHeader>
       </Card>
     </Link>
@@ -33,7 +31,7 @@ function CardSelect({ title, description, icon: Icon }: CardSelectProps) {
 
 export default function SelectPlatform() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-5">
       <CardSelect
         title="Email"
         description="Send surveys to your customers using email."

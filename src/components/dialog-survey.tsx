@@ -18,6 +18,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "@/navigation";
 import Input from "@/app/[locale]/app/surveys/[surveyId]/_components/forms/input";
+import { faker } from "@faker-js/faker";
 
 type DialogSurveyProps = {
   open: boolean;
@@ -37,7 +38,7 @@ export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
   });
 
   const handleSubmit: SubmitHandler<z.infer<typeof schema>> = async (d) => {
-    const surveyId = "x12463";
+    const surveyId = faker.string.uuid();
 
     toast({
       title: "Successfully to create a survey",
