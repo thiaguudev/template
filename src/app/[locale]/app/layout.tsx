@@ -58,7 +58,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
         <div className="flex">
           <div className="hidden md:block">
-            {!"/app/surveys/configure-survey".includes(pathname) && <Sidebar />}
+            {!("/app/surveys/configure-survey" === pathname) && <Sidebar />}
           </div>
 
           <div className="flex grow flex-col">

@@ -1,4 +1,5 @@
 "use client";
+
 import { FC } from "react";
 
 import { Link } from "@/navigation";
@@ -7,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardContent,
 } from "@/components/ui/card";
 
 type CardSettingsProps = {
