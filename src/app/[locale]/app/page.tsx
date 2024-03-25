@@ -1,7 +1,9 @@
 import isAuth from "@/components/isAuth";
+import { getServerAuthSession } from "@/lib/auth";
+import { redirect } from "@/navigation";
 
-function AppPage() {
+export default async function AppPage() {
+  const auth = await getServerAuthSession();
+  if (!auth) return redirect("/sign-in");
   return <div />;
 }
-
-export default isAuth(AppPage);
