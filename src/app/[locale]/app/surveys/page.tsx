@@ -9,7 +9,7 @@ import { Survey } from "@prisma/client";
 
 export default function SurveysPage() {
   const [open, setOpen] = useState<boolean>(false);
-  const [surveys, setSurveys] = useState<Survey[]>([]);
+  const [surveys, setSurveys] = useState<any[]>([]);
 
   useEffect(() => {
     fetch("/api/surveys").then((response) => {
