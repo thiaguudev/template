@@ -21,10 +21,10 @@ import { Label } from "@/components/ui/label";
 import { Input as ColorPicker } from "@/components/ui/input";
 import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
 import { RadioGroupItem } from "@/components/ui/radio-group";
-import Input from "./forms/input";
-import Textarea from "./forms/textarea";
-import RadioGroup from "./forms/radio-group";
-import Checkbox from "./forms/checkbox";
+import Textarea from "@/components/form/textarea";
+import RadioGroup from "@/components/form/radio-group";
+import Checkbox from "@/components/form/checkbox";
+import Input from "@/components/form/input";
 
 type SettingsProps = {
   onChangeScreen: (value: string) => void;

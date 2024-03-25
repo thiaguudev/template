@@ -45,6 +45,7 @@ model User {
 
   customerId   String?       @unique
   Subscription Subscription?
+  Project      Project?
 }
 
 model VerificationToken {
@@ -79,8 +80,29 @@ model Subscription {
   @@index([userId])
 }
 
-model Survey {
+model Project {
   id     String @id @default(uuid())
-  title  String
-  userId String
+  name   String
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Survey {
+  id          String  @id @default(uuid())
+  title       String
+  description String?
+  type        String
+  status      Int     @default(0)
+}
+
+model EmailSurvey {
+  id String @id @default(uuid())
+}
+
+model LinkSurvey {
+  id String @id @default(uuid())
+}
+
+model SMSSurvey {
+  id String @id @default(uuid())
 }

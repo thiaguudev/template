@@ -47,3 +47,11 @@ export type MarketingConfig = {
     disabled?: boolean
   }[]
 }
+
+export type Survey = {
+  id: string;
+  name: string;
+  type: "nps" | "ces" | "csat" | "custom";
+  description?: string;
+  status: "published" | "unpublished";
+}

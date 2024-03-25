@@ -15,7 +15,7 @@ type CardSelectProps = {
 
 function CardSelect({ title, description, icon: Icon }: CardSelectProps) {
   return (
-    <Link href={``}>
+    <Link href="/">
       <Card className="hover:outline p-3 hover:outline-primary min-h-32 hover:outline-1 flex items-center">
         <CardHeader className="flex flex-row items-center gap-3">
           <CardTitle className="flex flex-col items-center justify-center text-center gap-2 min-w-24">

@@ -9,20 +9,20 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/navigation";
-import { More } from "iconsax-react";
 import { cn } from "@/lib/utils";
+import DropdownMenuCard from "./dropdown-menu-card";
 
 type CardSurveyProps = {
   id: string;
-  name: string;
-  type: "nps" | "ces" | "csat" | "custom";
+  title: string;
+  type: string;
   description?: string;
-  status: "active" | "inactive";
+  status: number;
 };
 
 export default function CardSurvey({
   id,
-  name,
+  title,
   type,
   description,
   status,
@@ -44,7 +44,7 @@ export default function CardSurvey({
           <div className="flex flex-row justify-between">
             <div className="flex flex-col grow p-3 gap-3">
               <CardTitle className="flex justify-between items-center gap-3">
-                {name} {getSurveyType(type)}
+                {title} {getSurveyType(type)}
               </CardTitle>
               <CardDescription>{description}</CardDescription>
             </div>
@@ -55,12 +55,12 @@ export default function CardSurvey({
           <Badge
             className={cn(
               "text-white max-w-20 w-full text-center",
-              status === "active" ? "bg-emerald-500" : "bg-red-500"
+              status ? "bg-emerald-500" : "bg-red-500"
             )}
           >
-            <span className="block w-full">{status}</span>
+            <span className="block w-full capitalize">{status}</span>
           </Badge>
-          <More />
+          <DropdownMenuCard />
         </CardFooter>
       </Card>
     </Link>

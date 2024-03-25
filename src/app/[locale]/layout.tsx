@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { useMessages, NextIntlClientProvider } from "next-intl";
 import { Analytics } from "@vercel/analytics/react";
+import { ClerkProvider } from "@clerk/nextjs";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import Chat from "@/components/Chat";
 import HotJar from "@/components/HotJar";
 import { ThemeProvider } from "@/components/ThemeProvider";
-
 import { Locale } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import "../css/style.css";
@@ -30,16 +30,11 @@ export default function RootLayout({
   const messages = useMessages();
   return (
     <html lang={locale}>
-      <body
-        className={cn(
-          "antialiased bg-background tracking-tight",
-          fontSans.className
-        )}
-      >
+      <body className={cn("bg-background antialiased", fontSans.className)}>
         <div className="flex flex-col min-h-screen">
           <ThemeProvider
             attribute="class"
-            defaultTheme="light"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >

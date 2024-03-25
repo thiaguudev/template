@@ -3,7 +3,9 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver as resolver } from "@hookform/resolvers/zod";
+import { faker } from "@faker-js/faker";
 
+import { prisma } from "@/lib/prisma";
 import {
   Dialog,
   DialogClose,
@@ -17,8 +19,7 @@ import { Form } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "@/navigation";
-import Input from "@/app/[locale]/app/surveys/[surveyId]/_components/forms/input";
-import { faker } from "@faker-js/faker";
+import Input from "./form/input";
 
 type DialogSurveyProps = {
   open: boolean;
@@ -38,15 +39,20 @@ export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
   });
 
   const handleSubmit: SubmitHandler<z.infer<typeof schema>> = async (d) => {
-    const surveyId = faker.string.uuid();
+    const type = faker.helpers.arrayElement(["nps"]);
+
+    const survey = await prisma.survey.create({
+      data: { title: d.title, type },
+    });
 
     toast({
       title: "Successfully to create a survey",
-      description: JSON.stringify(d),
-      variant: "success",
+      description: "Continue configuring your survey",
     });
 
-    router.push(`/app/surveys/${surveyId}`);
+    console.log(survey);
+
+    router.push(`/app/surveys/${survey.id}/type/${type}/select-platform`);
   };
 
   return (

@@ -50,53 +50,7 @@ export default function GeneralSettings() {
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
             className="space-y-6"
-          >
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => {
-                return (
-                  <FormItem className="grid w-full max-w-sm items-center gap-2 mb-5">
-                    <FormLabel>Change email address</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      This is your public display name.
-                    </FormDescription>
-                  </FormItem>
-                );
-              }}
-            />
-
-            <FormField
-              control={form.control}
-              name="notifications"
-              render={({ field }) => {
-                return (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md">
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel>
-                        Use different settings for my mobile devices
-                      </FormLabel>
-                      <FormDescription>
-                        You can manage your mobile notifications in the{" "}
-                        <Link href="/examples/forms">mobile settings</Link>{" "}
-                        page.
-                      </FormDescription>
-                    </div>
-                  </FormItem>
-                );
-              }}
-            />
-            <Button type="submit">Save Changes</Button>
-          </form>
+          />
         </Form>
       </div>
     </Page>

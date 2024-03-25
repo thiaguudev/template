@@ -50,19 +50,19 @@ function Navbar({
         </button>
 
         <div className="text-gray-500 hidden md:flex gap-2">
-          <Button variant="secondary" size="icon" className="hover:bg-gray-100">
+          {/* <Button variant="secondary" size="icon" className="hover:bg-gray-100">
             <SearchNormal1
               size={16}
               className="hover:stroke-black hover:text-black"
             />
-          </Button>
+          </Button> */}
 
-          <Button variant="secondary" size="icon" className="hover:bg-gray-100">
+          {/* <Button variant="secondary" size="icon" className="hover:bg-gray-100">
             <Notification
               size={16}
               className="hover:stroke-black hover:text-black"
             />
-          </Button>
+          </Button> */}
 
           <ThemeSwitcher />
 
