@@ -35,6 +35,7 @@ const config = {
       fontFamily: {
         sans: ['var(--font-sans)'],
         mono: ['var(--font-mono)'],
+        effect: ['var(--font-effect)'],
       },
       colors: {
         tremor: {

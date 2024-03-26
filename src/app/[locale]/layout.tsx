@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import { siteConfig } from "@/config/site";
-import { fontMono, fontSans } from "@/config/fonts";
+import { fontEffect, fontMono, fontSans } from "@/config/fonts";
 import Chat from "@/components/Chat";
 import HotJar from "@/components/HotJar";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`bg-background tracking-tighter antialiased ${fontSans.variable} ${fontMono.variable}`}
+        className={`bg-background tracking-tighter scroll-smooth antialiased ${fontSans.variable} ${fontMono.variable} ${fontEffect.variable}`}
       >
         <div className="flex flex-col min-h-screen font-sans">
           <ThemeProvider

@@ -1,6 +1,7 @@
 import {
-  Roboto as FontSans,
+  DM_Sans as FontSans,
   Bricolage_Grotesque as FontMono,
+  Caveat as FontEffect
 } from "next/font/google";
 
 export const fontSans = FontSans({
@@ -14,3 +15,9 @@ export const fontMono = FontMono({
   variable: "--font-mono",
   weight: ["800"],
 });
+
+export const fontEffect = FontEffect({
+  subsets: ['latin'],
+  variable: '--font-effect',
+  weight: ["700"]
+})

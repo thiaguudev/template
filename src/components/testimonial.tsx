@@ -40,9 +40,7 @@ export default function Testimonial({
       <div className="text-gray-700 font-medium mt-6 pt-5 border-t border-gray-700">
         <cite className="text-gray-200 not-italic">{name}</cite>{" "}
         <span className="text-gray-200">-</span>{" "}
-        <span className="text-primary hover:text-gray-200 transition duration-150 ease-in-out">
-          {job}
-        </span>
+        <span className="text-primary italic">{job}</span>
       </div>
     </div>
   );

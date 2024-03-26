@@ -24,7 +24,6 @@ export default function LandingLayout({ children }: LandingLayoutProps) {
     <>
       <Header />
       {children}
-      {/* <Banner /> */}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { Link } from "@/navigation";
-import { Input } from "./ui/input";
+import { Input } from "@/components/ui/input";
 
 export default function Newsletter() {
   return (
