@@ -2,10 +2,9 @@
 
 import { ReactNode, useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css";
 
-import Banner from "@/components/banner";
 import Header from "@/components/layout/header";
+import "aos/dist/aos.css";
 
 type LandingLayoutProps = {
   children: ReactNode;
@@ -25,7 +24,7 @@ export default function LandingLayout({ children }: LandingLayoutProps) {
     <>
       <Header />
       {children}
-      <Banner />
+      {/* <Banner /> */}
     </>
   );
 }

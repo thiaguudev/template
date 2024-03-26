@@ -1,10 +1,11 @@
+import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { useMessages, NextIntlClientProvider } from "next-intl";
 import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+import { fontMono, fontSans } from "@/config/fonts";
 import Chat from "@/components/Chat";
 import HotJar from "@/components/HotJar";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 type RootLayoutProps = Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
   params: { locale: Locale };
 }>;
 
@@ -28,10 +29,13 @@ export default function RootLayout({
   params: { locale },
 }: RootLayoutProps) {
   const messages = useMessages();
+
   return (
     <html lang={locale}>
-      <body className={cn("bg-background antialiased", fontSans.className)}>
-        <div className="flex flex-col min-h-screen">
+      <body
+        className={`bg-background tracking-tighter antialiased ${fontSans.variable} ${fontMono.variable}`}
+      >
+        <div className="flex flex-col min-h-screen font-sans">
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

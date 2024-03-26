@@ -25,6 +25,7 @@ declare module "next-auth/jwt" {
 export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
   secret: env.SECRET_KEY,
+  debug: true,
   adapter: PrismaAdapter(prisma),
   callbacks: {
     async session({ session, token }) {

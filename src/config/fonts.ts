@@ -1,6 +1,16 @@
-import { Outfit as FontSans } from "next/font/google";
+import {
+  Roboto as FontSans,
+  Bricolage_Grotesque as FontMono,
+} from "next/font/google";
 
 export const fontSans = FontSans({
-  subsets: ['latin'],
-  weight: ["900"],
-})
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "700", "900"],
+});
+
+export const fontMono = FontMono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["800"],
+});

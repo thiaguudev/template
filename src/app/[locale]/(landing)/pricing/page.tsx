@@ -1,8 +1,5 @@
 import { PricingCards } from "@/components/pricing-cards";
-import { Skeleton } from "@/components/ui/skeleton";
 import { getServerAuthSession } from "@/lib/auth";
-// import { getCurrentUser } from '@/lib/session';
-// import { getUserSubscriptionPlan } from '@/lib/subscription';
 
 export const metadata = {
   title: "Pricing",

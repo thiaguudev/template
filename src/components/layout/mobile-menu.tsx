@@ -1,7 +1,8 @@
 "use client";
 
-import { Link } from "@/navigation";
 import { useState, useRef, useEffect } from "react";
+
+import { Link } from "@/navigation";
 
 export default function MobileMenu() {
   const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false);
@@ -69,7 +70,7 @@ export default function MobileMenu() {
           <li>
             <Link
               href="/sign-in"
-              className="flex font-medium w-full text-purple-600 hover:text-gray-200 py-2 justify-center"
+              className="flex font-medium w-full text-primary hover:text-primary/85 py-2 justify-center"
               onClick={() => setMobileNavOpen(false)}
             >
               Sign in
@@ -78,7 +79,7 @@ export default function MobileMenu() {
           <li>
             <Link
               href="/sign-up"
-              className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded-sm text-white bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out"
+              className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded-sm text-white bg-primary hover:bg-primary/85 transition duration-150 ease-in-out"
               onClick={() => setMobileNavOpen(false)}
             >
               Sign up

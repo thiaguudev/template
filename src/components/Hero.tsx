@@ -42,34 +42,33 @@ export default function Hero() {
           </svg>
         </div>
 
-        {/* Hero content */}
         <div className="relative pt-32 pb-10 md:pt-40 md:pb-16">
-          {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
-            <h1 className="h1 mb-4" data-aos="fade-up">
-              Landing template for startups
+            <h1 className="h1 mb-4 font-mono" data-aos="fade-up">
+              The easiest way to collect feedback from your customers
             </h1>
             <p
-              className="text-xl text-gray-400 mb-8"
+              className="text-xl text-gray-400 mb-8 font-sans"
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              Our landing page template works on all devices, so you only have
-              to set it up once, and get beautiful results forever.
+              Power your business with powerful insights and improve customer
+              satisfaction like never before. Create surveys, collect feedback,
+              respond to your customers - all in one place.
             </p>
             <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
               <div data-aos="fade-up" data-aos-delay="400">
                 <Link
-                  className="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0 rounded-xl"
+                  className="btn text-white bg-primary hover:bg-primary/85 w-full mb-4 sm:w-auto sm:mb-0 rounded-xl"
                   href="#0"
                 >
-                  Start free trial
+                  Get started for free
                 </Link>
               </div>
               <div data-aos="fade-up" data-aos-delay="600">
                 <Link
-                  className="btn text-white bg-gray-700 hover:bg-gray-800 w-full sm:w-auto sm:ml-4 rounded-xl"
-                  href="#0"
+                  className="btn text-white bg-secondary hover:bg-secondary/85 w-full sm:w-auto sm:ml-4 rounded-xl"
+                  href="#features"
                 >
                   Learn more
                 </Link>

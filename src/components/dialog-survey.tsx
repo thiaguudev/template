@@ -50,8 +50,6 @@ export function DialogSurvey({ open, onOpenChange }: DialogSurveyProps) {
       description: "Continue configuring your survey",
     });
 
-    console.log(survey);
-
     router.push(`/app/surveys/${survey.id}/type/${type}/select-platform`);
   };
 

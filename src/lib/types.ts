@@ -1,3 +1,5 @@
+import { LucideIcon } from "lucide-react";
+
 export type Locale = "pt" | "en" | "es";
 
 export type Address = {
@@ -26,27 +28,46 @@ export type SubscriptionPlan = {
   benefits: string[];
   limitations: string[];
   prices: {
-    monthly: number,
-    yearly: number
-  }
+    monthly: number;
+    yearly: number;
+  };
   stripeIds: {
-    monthly?: string | null,
-    yearly?: string | null
-  }
-}
+    monthly?: string | null;
+    yearly?: string | null;
+  };
+};
 
 export type UserSubscriptionPlan = {
-  stripePriceId: string
+  stripePriceId: string;
   interval: string;
-}
+};
 
-export type MarketingConfig = {
+export type LandingConfig = {
   mainNav: {
     title: string;
     href: string;
-    disabled?: boolean
+    disabled?: boolean;
+  }[];
+  features: {
+    title: string;
+    description: string;
+    icon: LucideIcon;
+  }[];
+  testimonials: {
+    name: string;
+    text: string;
+    job: string;
+    imageSrc: string;
+  }[];
+  zigzag: {
+    description: string;
+    title: string;
+    subtitle: string,
+    list: string[];
+    imageSrc: string;
+    reverse?: boolean
   }[]
-}
+};
 
 export type Survey = {
   id: string;
@@ -54,4 +75,4 @@ export type Survey = {
   type: "nps" | "ces" | "csat" | "custom";
   description?: string;
   status: "published" | "unpublished";
-}
+};

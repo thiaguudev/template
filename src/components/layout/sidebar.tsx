@@ -1,9 +1,8 @@
 "use client";
 
 import { Flash, Gift, Messages1, People, Setting2, Star1 } from "iconsax-react";
-import { HelpCircle, MessageSquareMore } from "lucide-react";
-
 import { signOut } from "next-auth/react";
+import { HelpCircle, MessageSquareMore } from "lucide-react";
 
 import useMediaQuery from "@/hooks/use-media-query";
 import MenuLink from "../menu-link";
@@ -71,7 +70,7 @@ function Sidebar() {
               <Button
                 variant="destructive"
                 className="w-full"
-                onClick={() => signOut()}
+                onClick={() => signOut({ callbackUrl: "/" })}
               >
                 Sign Out
               </Button>

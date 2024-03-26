@@ -1,17 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import {
-  Add,
-  CalendarEdit,
-  Notification,
-  SearchNormal1,
-  SidebarLeft,
-} from "iconsax-react";
+import { SidebarLeft } from "iconsax-react";
 
 import ProfileImage from "../../public/images/testimonial-01.jpg";
-import UserNav from "./UserNav";
 import { ThemeSwitcher } from "./ThemeSwitcher";
-import { Button } from "./ui/button";
 import { AddButton } from "./buttons";
 
 function Navbar({
@@ -50,20 +42,6 @@ function Navbar({
         </button>
 
         <div className="text-gray-500 hidden md:flex gap-2">
-          {/* <Button variant="secondary" size="icon" className="hover:bg-gray-100">
-            <SearchNormal1
-              size={16}
-              className="hover:stroke-black hover:text-black"
-            />
-          </Button> */}
-
-          {/* <Button variant="secondary" size="icon" className="hover:bg-gray-100">
-            <Notification
-              size={16}
-              className="hover:stroke-black hover:text-black"
-            />
-          </Button> */}
-
           <ThemeSwitcher />
 
           <AddButton onClick={() => console.log("")}>

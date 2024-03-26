@@ -59,7 +59,6 @@ model VerificationToken {
 model Plan {
   id            String         @id @default(uuid())
   name          String         @unique
-  country       String
   priceId       String         @unique
   subscriptions Subscription[]
 }
@@ -93,16 +92,4 @@ model Survey {
   description String?
   type        String
   status      Int     @default(0)
-}
-
-model EmailSurvey {
-  id String @id @default(uuid())
-}
-
-model LinkSurvey {
-  id String @id @default(uuid())
-}
-
-model SMSSurvey {
-  id String @id @default(uuid())
 }

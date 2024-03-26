@@ -1,11 +1,8 @@
-// "use client";
-
 import Page from "@/components/shared/page";
-import { prisma } from "@/lib/prisma";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
+import { prisma } from "@/lib/prisma";
 import { getServerAuthSession } from "@/lib/auth";
-import { auth } from "@clerk/nextjs";
 
 type PlanLimitsProps = {
   title: string;
@@ -45,14 +42,12 @@ export default async function BillingSettings() {
     },
   });
 
-  console.log("subscription", subscription?.plan?.name);
-
   return (
     <Page title="Billing and Payments" subtitle="Manage you plan and payments.">
-      <div className="flex flex-col border p-3 rounded-xl">
+      <div className="flex flex-col">
         <div className="flex justify-between items-center px-3 py-1">
           <span className="text-muted-foreground text-2xl capitalize">
-            {subscription?.plan?.name}
+            {subscription?.plan?.name || "Free"}
           </span>
           <span className="text-muted-foreground text-xl">$0 per month</span>
         </div>
