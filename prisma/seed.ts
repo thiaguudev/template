@@ -6,17 +6,14 @@ async function main() {
   const plans = [
     {
       name: "Starter",
-      country: "en",
       priceId: "price_1OeiErKFxdF5l7Kyp5Fwo80l",
     },
     {
       name: "Plus",
-      country: "en",
       priceId: "price_1OeiFgKFxdF5l7Ky49c1c1gM",
     },
     {
       name: "Business",
-      country: "en",
       priceId: "price_1OeiG0KFxdF5l7KyG8iihEcK",
     },
   ] as Plan[];
