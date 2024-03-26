@@ -18,6 +18,10 @@ async function main() {
     },
   ] as Plan[];
 
+  await prisma.user.deleteMany();
+  await prisma.survey.deleteMany();
+  await prisma.plan.deleteMany();
+
   for (let plan of plans) {
     await prisma.plan.upsert({
       where: { name: plan.name },
