@@ -1,7 +1,7 @@
 import {
   DM_Sans as FontSans,
   Bricolage_Grotesque as FontMono,
-  Caveat as FontEffect
+  Caveat as FontEffect,
 } from "next/font/google";
 
 export const fontSans = FontSans({

@@ -62,18 +62,10 @@ export default function Hero() {
             <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
               <div data-aos="fade-up" data-aos-delay="400">
                 <Link
-                  className="btn text-white bg-primary hover:bg-primary/85 w-full mb-4 sm:w-auto sm:mb-0 rounded-xl"
-                  href="#0"
+                  className="font-effect text-3xl md:text-4xl rounded-3xl mb-4 inline-flex h-[74px] animate-shimmer items-center justify-center w-full border border-primary bg-[linear-gradient(110deg,#12AA5F,45%,#12AA4F,55%,#12A24F)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+                  href="/sign-up"
                 >
-                  Get started for free
-                </Link>
-              </div>
-              <div data-aos="fade-up" data-aos-delay="600">
-                <Link
-                  className="btn text-white bg-secondary hover:bg-secondary/85 w-full sm:w-auto sm:ml-4 rounded-xl"
-                  href="#features"
-                >
-                  Learn more
+                  Start for free today
                 </Link>
               </div>
             </div>
