@@ -28,7 +28,7 @@ export default function Testimonial({
             alt="Testimonial 01"
           />
           <svg
-            className="absolute top-0 right-0 -mr-3 w-6 h-5 fill-current text-purple-600"
+            className="absolute top-0 right-0 -mr-3 w-6 h-5 fill-current text-primary"
             viewBox="0 0 24 20"
             xmlns="http://www.w3.org/2000/svg"
           >

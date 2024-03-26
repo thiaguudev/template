@@ -38,6 +38,7 @@ const config = {
         effect: ['var(--font-effect)'],
       },
       colors: {
+        dark: "#12AA5F",
         tremor: {
           brand: {
             faint: colors.blue[50],
