@@ -51,17 +51,8 @@ export default function Header() {
                   Sign in
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/sign-up"
-                  className="btn-sm text-white bg-primary hover:bg-primary/85 ml-3 rounded-xl"
-                >
-                  Sign up
-                </Link>
-              </li>
             </ul>
           </nav>
-
           <MobileMenu />
         </div>
       </div>

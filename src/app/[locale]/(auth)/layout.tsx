@@ -11,5 +11,5 @@ type AuthLayoutProps = Readonly<{
 }>;
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
-  return children;
+  return <div className="h-full">{children}</div>;
 }

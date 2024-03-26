@@ -1,12 +1,27 @@
+"use client";
+
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver as resolver } from "@hookform/resolvers/zod";
+
 import { Link } from "@/navigation";
 import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
+import { Button } from "./ui/button";
 
 export default function Newsletter() {
+  const schema = z.object({
+    email: z.string().email(),
+  });
+
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: resolver(schema),
+  });
+
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div
-          // className="relative bg-purple-600 py-10 px-8 md:py-16 md:px-12"
           className="relative bg-primary py-10 px-8 md:py-16 md:px-12"
           data-aos="fade-up"
         >
@@ -50,22 +65,23 @@ export default function Newsletter() {
               </p>
             </div>
 
-            <form className="w-full lg:w-1/2">
-              <div className="flex flex-col sm:flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:max-w-none">
-                <Input
-                  type="email"
-                  className="w-full appearance-none bg-dark border border-purple-500 focus:border-purple-300 px-4 py-3 mb-2 sm:mb-0 sm:mr-2 text-white placeholder-purple-400 rounded-xl h-12"
-                  placeholder="Your best email…"
-                  aria-label="Your best email…"
-                />
-                <Link
-                  className="btn text-primary bg-purple-100 hover:bg-white shadow rounded-xl"
-                  href="#0"
-                >
-                  Subscribe
-                </Link>
-              </div>
-            </form>
+            <Form {...form}>
+              <form className="w-full lg:w-1/2">
+                <div className="flex flex-col sm:flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:max-w-none gap-1">
+                  <Input
+                    type="email"
+                    className="w-full appearance-none bg-dark/70 border border-primary focus:border-primary px-4 py-3 mb-2 sm:mb-0 sm:mr-2 text-foreground placeholder-foreground rounded-xl h-12"
+                    placeholder="Your best email…"
+                  />
+                  <Button
+                    className="text-primary bg-purple-100 hover:bg-white shadow rounded-xl h-12 px-5"
+                    type="submit"
+                  >
+                    Subscribe
+                  </Button>
+                </div>
+              </form>
+            </Form>
           </div>
         </div>
       </div>
